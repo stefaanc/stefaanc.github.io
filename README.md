@@ -1,6 +1,10 @@
 # Stefaan Coussement
 
-<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+### link to me on
+
+[Linkedin](https://www.linkedin.com/in/stefaan-coussement--software-engineering--cloud-computing--genesys-routing/)
+
+[Github](https://github.com/stefaanc)
 
 ### projects
 
