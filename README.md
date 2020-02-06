@@ -21,17 +21,17 @@ This project is refactoring a previous project `DevEnv`, introducing Terraform a
 
 - **kluster**: a package to deploy and configure highly-scalable production-grade apps using kubernetes on a bare-metal platform.
 
-  - [open on github](https://github.com/stefaanc/kluster)
+  - [open on github](https://github.com/stefaanc/kluster)  :construction:
   
 
 - **terraform-provider-windows**: a terraform provider to work with a Windows computer
 
-  - [open on github](https://github.com/stefaanc/terraform-provider-windows)
+  - [open on github](https://github.com/stefaanc/terraform-provider-windows)  :construction:
   
 
 - **terraform-provider-hyperv**: a terraform provider to work with Hyper-V
 
-  - [open on github](https://github.com/stefaanc/terraform-provider-hyperv)
+  - [open on github](https://github.com/stefaanc/terraform-provider-hyperv)  :construction:
 
 
 - **terraform-provider-hosts**: a terraform provider to work with hosts-files
