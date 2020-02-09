@@ -5,7 +5,7 @@ title: Tools
 
 ---
 
-##### 7C-model
+### 7C-model
 
 - Complete
 - Concise
@@ -17,7 +17,7 @@ title: Tools
 
 ---
 
-##### 6D-model
+### 6D-model
 
 - Define
 - Design
@@ -28,7 +28,7 @@ title: Tools
 
 ---
 
-##### 5WH-model
+### 5WH-model
 
 - What
 - Who
@@ -39,7 +39,7 @@ title: Tools
 
 ---
 
-##### orming-model
+### orming-model
 
 - Forming
 - Storming
@@ -48,7 +48,7 @@ title: Tools
 
 ---
 
-##### SMART goals
+### SMART goals
 
 - Specific
 - Measurable
@@ -58,7 +58,7 @@ title: Tools
 
 ---
 
-##### Project management triangle
+### Project management triangle
 
 pick two:
 - "good"

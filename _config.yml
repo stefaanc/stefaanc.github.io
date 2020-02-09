@@ -1,11 +1,32 @@
-# theme: jekyll-theme-slate
+# Site settings
+title: The Dungeons
+### description: >-
+###   Some stuff.
+### url: "https://stefaanc.github.io"                                           # <<<<<
+url: "localhost:4000"
+baseurl: "/"
 
-title: Stefaan Coussement
+author: Stefaan Coussement
+email: stefaan.coussement@gmail.com
+linkedin_username: stefaan-coussement
+github_username:  stefaanc
 
-owner:
-  name: Stefaan Coussement
-  avatar: bio-photo.png
-  email: stefaan.coussement@gmail.com
+header_pages:
+  - index.md
+  - bookmarks.md
+  - projects.md
+  - tools.md
 
-  linkedin: stefaan.coussement@gmail.com
-  github: stefaanc
+show_excerpts: true
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+###  - jemoji                                                                   # <<<<<
+###  - jekyll-feed
+
+# Exclude from processing.
+exclude:
+  - Gemfile
+  - Gemfile.lock
