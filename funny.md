@@ -1,6 +1,7 @@
-# Funny
-
-<br/>
+---
+layout: page
+title: Funny
+---
 
 ---
 

@@ -1,6 +1,7 @@
-# Tools
-
-<br/>
+---
+layout: page
+title: Tools
+---
 
 ---
 

@@ -1,7 +1,6 @@
-# Bookmarks
-
-<br/>
-
+---
+layout: page
+title: Bookmarks
 ---
 
 ##### ASCII

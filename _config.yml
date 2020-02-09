@@ -1,2 +1,11 @@
-theme: jekyll-theme-slate
+# theme: jekyll-theme-slate
+
 title: Stefaan Coussement
+
+owner:
+  name: Stefaan Coussement
+  avatar: bio-photo.png
+  email: stefaan.coussement@gmail.com
+
+  linkedin: stefaan.coussement@gmail.com
+  github: stefaanc

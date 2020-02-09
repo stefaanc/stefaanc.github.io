@@ -1,6 +1,7 @@
-# Repos
-
-<br/>
+---
+layout: page
+title: Repos
+---
 
 ### Kluster project
 

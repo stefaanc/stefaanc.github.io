@@ -1,3 +1,8 @@
+---
+layout: page
+title: Home
+---
+
 ![](./documents/images/thumbnail.png)
 
 - [meet me on Linkedin](https://www.linkedin.com/in/stefaan-coussement--software-engineering--cloud-computing--genesys-routing/)  
