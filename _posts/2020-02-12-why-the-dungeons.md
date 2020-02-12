@@ -11,7 +11,7 @@ Companies often don't really want software engineers to meet with customers:
 
 1. software engineers often dress nerdy, talk nerdy, are nerdy
 2. software engineers may talk about the wonderful bugs and ridiculous features they are working on
-3. software engineers may tell the customer what they really think about the company's products
+3. software engineers may tell the customer what they really think about the company's products  
 
 So,
 
