@@ -15,6 +15,6 @@ Companies often don't really want software engineers to meet with customers:
 
 So,
 
-if the customer has to go to the right to the meeting rooms, put the software engineers in offices to the left.  
-if the customer has to go up to meet the sales team, put the software engineers down... in the dungeons.
+if the customer goes to the right to the meeting rooms, put the software engineers in offices to the left.  
+if the customer goes up to meet the sales team, put the software engineers down... in **the dungeons**.
  
