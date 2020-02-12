@@ -13,6 +13,7 @@ Companies often don't really want software engineers to meet with customers:
 2. software engineers may talk about the wonderful bugs and ridiculous features they are working on
 3. software engineers may even tell the customer what they really think about the company's products  
 
+
 So,
 
 if the customer goes to the right to the meeting rooms, put the software engineers in offices to the left.  
