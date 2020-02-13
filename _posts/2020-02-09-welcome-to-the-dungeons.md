@@ -7,5 +7,5 @@ comments: false
 
 ![bio-photo.png](/images/bio-photo.png)
 
-Welcome to The Dungeons - the place where I keep some stuff that is important to me.
+Welcome to The Dungeons - I finally found the time to clean-up the place where I keep some stuff that is important to me.
 
