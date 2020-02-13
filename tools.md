@@ -28,7 +28,7 @@ title: Tools
 
 ---
 
-### 5WH-model
+### 5W+H-model
 
 - What
 - Who
@@ -45,6 +45,15 @@ title: Tools
 - Storming
 - Norming
 - Performing
+
+---
+
+### STAR explanations
+
+- Situation
+- Task
+- Actions
+- Result
 
 ---
 
