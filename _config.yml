@@ -3,7 +3,7 @@ title: The Dungeons
 ### description: >-
 ###   Some stuff.
 url: "https://stefaanc.github.io"                                            # <<<<<
-###url: "localhost:4000"                                                           # <<<<<
+###url: "localhost:4000"                                                           # >>>>>
 baseurl: "/"
 
 author: Stefaan Coussement
