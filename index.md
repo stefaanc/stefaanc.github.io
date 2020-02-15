@@ -1,6 +1,5 @@
 ---
 layout: home
-title: Home
 ---
 
 ![avatar.png](/assets/images/avatar.png)
