@@ -3,8 +3,9 @@ layout: home
 title: Home
 ---
 
-![bio-photo.png](/assets/images/bio-photo.png)
+![avatar.png](/assets/images/avatar.png)
 
-- [Bookmarks](/bookmarks.html)
+- [Topics](/topics.html)
 - [Projects](/projects.html)
+- [Bookmarks](/bookmarks.html)
 - [Tools](/tools.html)

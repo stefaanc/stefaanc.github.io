@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Terraform Resource Lifecycle"
-category: general
+tags: [ terraform, terraform-provider ]
 date: 2020-02-15 14:41:12 +0000
 comments: true
 ---
@@ -9,6 +9,8 @@ comments: true
 I recently started working on Terraform Provider plugins, but there doesn't seem to be much information about plugin-development out there on the internet.  So I decided to collect some of my experience in a couple of posts.
 
 The Terraform resource lifecycle is based on [the CRUD methods: Create, Read, Update and Delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). The minimum set of methods a provider needs to implement for a resource is: `Create`, `Read` and `Delete`.  The `Update` method is optional.  And for resources where a `Read` is expensive, one can also add an `Exists` method.
+
+The Terraform data-source lifecycle only requires the `Read`-method.  I didn't explicitly check if it can also use the `Exists`-method, but I assume so.
 
 <br/>
 

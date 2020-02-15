@@ -13,8 +13,9 @@ github_username:  stefaanc
 
 header_pages:
   - index.md
-  - bookmarks.md
+  - topics.md
   - projects.md
+  - bookmarks.md
   - tools.md
 
 ###show_excerpts: true
