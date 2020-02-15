@@ -3,6 +3,8 @@ layout: page
 title: Bookmarks
 ---
 
+---
+
 ### ASCII
 
 [ascii character codes](https://ss64.com/ascii.html)  
