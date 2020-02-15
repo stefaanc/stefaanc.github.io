@@ -51,9 +51,9 @@ title: Tools
 ### STAR explanations
 
 - Situation
-- Task
+- Tasks
 - Actions
-- Result
+- Results
 
 ---
 
