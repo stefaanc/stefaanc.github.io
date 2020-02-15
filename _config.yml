@@ -12,7 +12,6 @@ linkedin_username: stefaan-coussement
 github_username:  stefaanc
 
 header_pages:
-  - index.md
   - topics.md
   - projects.md
   - bookmarks.md
