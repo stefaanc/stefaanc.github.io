@@ -17,7 +17,7 @@ header_pages:
   - projects.md
   - tools.md
 
-show_excerpts: true
+###show_excerpts: true
 
 # Build settings
 markdown: kramdown
