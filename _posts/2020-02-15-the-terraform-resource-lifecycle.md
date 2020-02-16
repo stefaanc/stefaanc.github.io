@@ -16,7 +16,7 @@ When applying a Terraform configuration,
  
 2. It will look for differences between its state-file and its configuration-files, to make a plan.  
 
-3. It will apply the plan by creating, updating or destroying resources, 
+3. It will apply the plan by creating, updating or deleting resources, 
 
 4. Finally, it will refresh its state-file with the information from the updated infrastructure. 
 
