@@ -3,7 +3,9 @@ layout: page
 title: Projects
 ---
 
-## Kluster
+---
+
+### Kluster
 
 "a package to deploy and configure highly-scalable production-grade apps using kubernetes on a bare-metal platform."
 
@@ -50,9 +52,13 @@ This project is refactoring a previous project `DevEnv`, introducing Terraform a
   - [open on github](https://github.com/stefaanc/ptsession)  
   <br/>  
 
-## Other Github repos
+---
+
+### Other Github repos
 
 **bookkeeping**: an API for a simple bookkeepping system
   - [open on swaggerhub](https://app.swaggerhub.com/apis/stefaanc/bookkeeping/v1)  
   - [open on github](https://github.com/stefaanc/bookkeeping)  :construction:  
   <br/>  
+
+---

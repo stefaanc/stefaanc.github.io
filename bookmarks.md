@@ -79,6 +79,7 @@ title: Bookmarks
 
 [jekyll](https://jekyllrb.com/docs/)  
 [jekyll minima theme](https://github.com/jekyll/minima)  
+[jekyll on github pages](https://pages.github.com/versions/)
 
 ---
 
