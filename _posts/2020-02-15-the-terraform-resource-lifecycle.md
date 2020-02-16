@@ -64,6 +64,9 @@ Terraform will first refresh its state-file, so it uses the provider's `Read`-me
 
 Terraform will then apply the terraform configuration, and will use the provider's `Create`-method to create the resource.  The `Create`-method is typically implemented to return the output of the provider's `Read`-method, and the `Read`-method updates the new Terraform state-file.  This will get infrastructure, Terraform state and Terraform configuration in-line with each other.
 
+> :information_source:  
+> Terraform will not use the `Read`-method after a `Create`-method by itself.  Instead, the `Create`-method has to call the `Read`-method (or implement its own read-function) before returning. 
+
 <br/>
 
 For instance, take line 4 in the previous table
@@ -126,6 +129,9 @@ A resource Z* does exist in the infrastructure.  It does exist in the Terraform 
 Terraform will first refresh its state-file, so it uses the provider's `Read`-method to get the latest information about this resource from the infrastructure, and will update the resource's attributes in its state-file.  
 
 Terraform will then apply the terraform configuration, and finds there are some attributes that are different from the Terraform configuration.  Terraform will use the provider's `Update`-method to update the resource.  The `Update`-method is typically implemented to return the output of the provider's `Read`-method, and the `Read`-method updates the new Terraform state-file.  This will get infrastructure, Terraform state and Terraform configuration in-line with each other.
+
+> :information_source:  
+> Terraform will not use the `Read`-method after an `Update`-method by itself.  Instead, the `Update`-method has to call the `Read`-method (or implement its own read-function) before returning. 
 
 <br/>
 
