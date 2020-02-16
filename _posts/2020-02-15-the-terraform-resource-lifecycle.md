@@ -8,9 +8,21 @@ comments: true
 
 I recently started working on Terraform Provider plugins, but there doesn't seem to be much information about plugin-development out there on the internet.  So I decided to collect some of my experience in a couple of posts.
 
-The Terraform resource lifecycle is based on [the CRUD methods: Create, Read, Update and Delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). The minimum set of methods a provider needs to implement for a resource is: `Create`, `Read` and `Delete`.  The `Update` method is optional.  And for resources where a `Read` is expensive, one can also add an `Exists` method.
+![refresh-plan-apply.png](/assets/2020-02-15-the-terraform-resource-lifecycle/refresh-plan-apply.png)
 
-The Terraform data-source lifecycle only requires the `Read`-method.  I didn't explicitly check if it can also use the `Exists`-method, but I assume so.
+When applying a Terraform configuration,
+ 
+1. Terraform starts with a refresh of its state-file, reading the information about its resources from the infrastructure, and updating its state-file. 
+ 
+2. It will look for differences between its state-file and its configuration-files, to make a plan.  
+
+3. It will apply the plan by creating, updating or destroying resources, 
+
+4. Finally, it will refresh its state-file with the information from the updated infrastructure. 
+
+The resource lifecycle is based on [the CRUD methods: Create, Read, Update and Delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). The minimum set of methods a provider needs to implement for a resource is: `Create`, `Read` and `Delete`.  The `Update` method is optional.  And for resources where a `Read` is expensive, one can also add an `Exists` method.
+
+The data-source lifecycle only requires the `Read`-method, since the infrastructure isn't updated.  I didn't explicitly check if it can also use the `Exists`-method, but I assume so.
 
 <br/>
 
