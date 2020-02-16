@@ -23,6 +23,7 @@ layout: default
 
   {%- if site.posts.size > 0 -%}
     {%- for tag in site.tags -%}
+      <hr>
       <h2 id="{{ tag[0] }}" class="post-list-heading">{{ tag[0] | capitalize }}</h2>
       <ul class="post-list">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
@@ -37,6 +38,7 @@ layout: default
         {%- endfor -%}
       </ul>
     {%- endfor -%}
+    <hr>
   {%- endif -%}
 
 </article>
