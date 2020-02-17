@@ -117,8 +117,12 @@ title: Bookmarks
 ### Linux
 
 [linux man pages](https://www.systutorials.com/docs/linux/man/)  
-[rhel 7](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/)  
+[redhat](https://www.redhat.com/en)
+[rhel 7](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/)  
+[rhel 8](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/)  
+[centos](https://www.centos.org/)  
 [centos 7](https://docs.centos.org/en-US/centos/install-guide/)  
+[centos 8](https://docs.centos.org/en-US/8-docs/)  
 [linux colors](https://misc.flogisoft.com/bash/tip_colors_and_formatting)  
 [linux color RGB/HSL definitions](https://jonasjacek.github.io/colors/)  
 
