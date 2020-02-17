@@ -117,7 +117,7 @@ title: Bookmarks
 ### Linux
 
 [linux man pages](https://www.systutorials.com/docs/linux/man/)  
-[redhat](https://www.redhat.com/en)
+[redhat](https://www.redhat.com/en)  
 [rhel 7](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/)  
 [rhel 8](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/)  
 [centos](https://www.centos.org/)  
