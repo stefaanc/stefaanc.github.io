@@ -475,7 +475,7 @@ func (c *ABCClient) DeleteXYZ(name string) error {
 
 ---
 
-Related Posts:
+### Related Posts
 
 - [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
 
