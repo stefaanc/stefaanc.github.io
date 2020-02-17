@@ -313,7 +313,7 @@ func resourceABCXYZCreate(d *schema.ResourceData, m interface{}) error {
     status := d.Get("status").(string)
 
     // create the resource in the infrastructure
-    xyz, err := c.CreateXYZ(name, status)
+    err := c.CreateXYZ(name, status)
     if err != nil {
         return err
     }
@@ -365,9 +365,6 @@ func resourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
     d.Set("name",   xyz.Name)
     d.Set("status", xyz.Status)
 
-    // set id
-    d.SetId(name)
-
     return nil
 }
 ```
@@ -375,6 +372,7 @@ func resourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
 > Compared to the data-source:  
 > 
 > - When the API `Read`-method returns an error, we set the ID to `""` and return `nil` instead of returning the error.  This allows this resource to be deleted from the Terraform state when Terraform refreshes its state.  
+> - The function doesn't set the resource's ID, since this was already set when the resource was created.
 
 We reuse the same API `Read`-method as for the data-source
 
@@ -407,7 +405,7 @@ func resourceABCXYZUpdate(d *schema.ResourceData, m interface{}) error {
     status := d.Get("status").(string)
 
     // update the resource in the infrastructure
-    xyz, err := c.UpdateXYZ(name, status)
+    err := c.UpdateXYZ(name, status)
     if err != nil {
         return err
     }
@@ -446,7 +444,7 @@ func resourceABCXYZDelete(d *schema.ResourceData, m interface{}) error {
     name := d.Get("name").(string)
 
     // delete the resource from the infrastructure
-    xyz, err := c.DeleteXYZ(name)
+    err := c.DeleteXYZ(name)
     if err != nil {
         return err
     }
