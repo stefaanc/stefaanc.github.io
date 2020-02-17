@@ -8,7 +8,7 @@ comments: true
 
 I recently started working on Terraform Provider plugins, but there doesn't seem to be much information about plugin-development out there on the internet.  So I decided to collect some of my experience in a couple of posts.
 
-![refresh-plan-apply.png](/assets/2020-02-15-the-terraform-resource-lifecycle/refresh-plan-apply.png)
+![refresh-plan-apply.png](/assets/images/refresh-plan-apply.png)
 
 When applying a Terraform configuration,
  
@@ -172,4 +172,12 @@ A resource X* does not exist in the infrastructure.  However, it does exist in t
 Terraform will first refresh its state-file, so it uses the provider's `Exists`-method to find out if this resource exists in the infrastructure.  Since the resource doesn't exist in the infrastructure, Terraform will clear the resource from its state-file.  
 
 Terraform will then apply the terraform configuration, and will use the provider's `Create`-method to create the resource.  The `Create`-method is typically implemented to return the output of the provider's `Read`-method, and the `Read`-method updates the new Terraform state-file.  This will get infrastructure, Terraform state and Terraform configuration in-line with each other.  
+
+<br/>
+
+---
+
+Related Posts:
+
+- [Implementing A Terraform Provider]({% post_url 2020-02-17-implementing-a-terraform-provider %})
 
