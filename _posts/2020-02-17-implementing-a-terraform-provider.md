@@ -351,14 +351,14 @@ Terraform needs a `Read`-method.
 func resourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
     c := m.(*api.ABCClient)
 
-    // get the identifying attributes of the data-source
+    // get the identifying attributes of the resource
     name := d.Get("name").(string)
 
     // read the data-source's information from the infrastructure
     xyz, err := c.ReadXYZ(name)
     if err != nil {
-       d.SetId("")
-       return nil
+        d.SetId("")
+        return nil
     }
 
     // set Terraform state
@@ -368,6 +368,7 @@ func resourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
     return nil
 }
 ```
+
 > :information_source:  
 > Compared to the data-source:  
 > 
