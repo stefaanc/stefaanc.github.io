@@ -2,7 +2,7 @@
 layout: home
 ---
 
-![avatar.png](https://github.com/stefaanc/stefaanc.github.io/tree/master/assets/images/avatar.png)
+![avatar.png](/assets/images/avatar.png)
 
 - [Topics](/topics.html)
 - [Projects](/projects.html)
