@@ -4,7 +4,7 @@ title: Projects
 ---
 
 - [Kluster](#kluster)
-- [Other Github Repos]((#other-github-repos)
+- [Other Github Repos](#other-github-repos)
 
 ---
 
