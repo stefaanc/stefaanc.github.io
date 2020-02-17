@@ -50,12 +50,17 @@ title: Bookmarks
 
 [github](https://github.com/)  
 [github emoji](https://gist.github.com/rxaviers/7360908)  
-[git-extensions documentation](https://git-extensions-documentation.readthedocs.io/en/latest/index.html)  
+[git-extensions documentation](https://git-extensions-documentation.readthedocs.io/en/latest/index.html)
+[tortoisegit](https://tortoisegit.org/)  
 
 ---
 
 ### Go
 
+[go](https://golang.org/)
+[go packages](https://golang.org/pkg/)
+[go source code](https://github.com/golang/go/tree/master/src)
+[godoc](https://godoc.org/)
 [gomplate](https://gomplate.hairyhenderson.ca/)  
 
 ---
@@ -80,6 +85,7 @@ title: Bookmarks
 [jekyll](https://jekyllrb.com/docs/)  
 [jekyll minima theme](https://github.com/jekyll/minima)  
 [jekyll on github pages](https://pages.github.com/versions/)
+[staticman](https://staticman.net/docs/)
 
 ---
 
@@ -171,8 +177,9 @@ title: Bookmarks
 
 ### Terraform
 
-[terraform](https://www.terraform.io/docs/cli-index.html)  
-[terraform-plugin-sdk](https://github.com/hashicorp/terraform-plugin-sdk)  
+[terraform](https://www.terraform.io/docs/cli-index.html)
+[terraform-plugin-sdk godoc](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper)  
+[terraform-plugin-sdk github](https://github.com/hashicorp/terraform-plugin-sdk)  
 
 ---
 
