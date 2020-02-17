@@ -8,7 +8,7 @@ comments: true
 
 I recently started working on Terraform Provider plugins, but there doesn't seem to be much information about plugin-development out there on the internet.  So I decided to collect some of my experience in a couple of posts.
 
-![refresh-plan-apply.png](/assets/images/refresh-plan-apply.png)
+![refresh-plan-apply.png](/assets/images/refresh-plan-apply-small.png)
 
 For more information about the Terraform resource lifecycle:
 
