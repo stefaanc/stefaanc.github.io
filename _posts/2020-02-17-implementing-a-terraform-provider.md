@@ -480,18 +480,20 @@ To build the provider:
 
 1. Create a repository, for instance called `terraform-provider-abc`
 
-2. Download the [`abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip) into your repository
+2. Download the content from the `terraform-provider-abc` in the [`abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip) into your repository
 
-3. In the `terraform-provider-abc` directory, 
+3. Assuming you have `go` installed and properly configured,  
+   in the `terraform-provider-abc` directory, 
 
-    1. run `go mod tidy`
-    2. run `go build -o "$env:APPDATA/terraform.d/plugins` (on Windows using Powershell)
+    1. run `go mod tidy`  
+    2. run `go build -o "$env:APPDATA/terraform.d/plugins` (on Windows using Powershell)  
        or `go build -o "%APPDATA%\terraform.d\plugins` (on Windows using CMD)  
-       or `go build -o ~/.terraform.d/plugins` (on Linux) 
+       or `go build -o ~/.terraform.d/plugins` (on Linux)  
 
 To run the provider:
 
-1. In the `terraform-provider-abc/examples` directory, 
+1. Assuming you have `terraform` installed and properly configured,  
+   in the `terraform-provider-abc/examples` directory, 
 
     1. run `terraform init`
     2. run `terraform plan`
