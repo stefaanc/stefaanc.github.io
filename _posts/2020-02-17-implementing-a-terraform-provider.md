@@ -480,7 +480,7 @@ To build the provider:
 
 1. Create a repository, for instance called `terraform-provider-abc`
 
-2. Download the [`abc` package](\assets\2020-02-17-implementing-a-terraform-provider\terraform-provider-abc.zip) into your repository
+2. Download the [`abc` package][1] into your repository
 
 3. In the `terraform-provider-abc` directory, 
 
@@ -511,3 +511,5 @@ To run the provider:
 ---
 
 EDIT: 18-02-2020 - code-corrections + added [Building & Running](#building--running)
+
+[1]:{{ site.url }}/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip
