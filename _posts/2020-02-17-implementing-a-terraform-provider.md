@@ -96,7 +96,7 @@ func Provider() terraform.ResourceProvider {
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
     config := Config{
-        Name: d.Get("name").(string)
+        Name: d.Get("name").(string),
     }
 
     return config.Client()
@@ -111,7 +111,7 @@ We need a provider config.
 package abc
 
 import (
-    "github.com/stefaanc/terraform-provider-windows/api"
+    "github.com/stefaanc/terraform-provider-abc/api"
 )
 
 type Config struct {
@@ -154,10 +154,10 @@ We need a schema for our data-source `abc_xyz`.  Our data-source will have two a
 
 package abc
 
-import {
+import (
     "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
     "github.com/stefaanc/terraform-provider-abc/api"
-}
+)
 
 func dataSourceABCXYZ() *schema.Resource {
     return &schema.Resource{
@@ -172,7 +172,7 @@ func dataSourceABCXYZ() *schema.Resource {
             },
         },
 
-        Read: datasourceABCXYZRead,
+        Read: dataSourceABCXYZRead,
     }
 }
 ```
@@ -231,7 +231,7 @@ And the data-source API needs a `Read`-method
 func (c *ABCClient) ReadXYZ(name string) (xyz *XYZ, err error) {
     // read the data-source's information from the infrastructure
     // for this post, we are just returning some values
-    xyz := new(XYZ)
+    xyz = new(XYZ)
     xyz.Name   = name
     xyz.Status = "open"
     
@@ -250,10 +250,10 @@ We need a schema for our resource `abc_xyz`.  Our resource will have two attribu
 
 package abc
 
-import {
+import (
     "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
     "github.com/stefaanc/terraform-provider-abc/api"
-}
+)
 
 func ResourceABCXYZ() *schema.Resource {
     return &schema.Resource{
@@ -383,7 +383,7 @@ We reuse the same API `Read`-method as for the data-source
 func (c *ABCClient) ReadXYZ(name string) (xyz *XYZ, err error) {
     // read the data-source's information from the infrastructure
     // for this post, we are just returning some values
-    xyz := new(XYZ)
+    xyz = new(XYZ)
     xyz.Name   = name
     xyz.Status = "open"
     
@@ -472,10 +472,42 @@ func (c *ABCClient) DeleteXYZ(name string) error {
 
 <br/>
 
+### Building & Running
+
+I prepared a small package for this example provider, in case you want to play with it.
+
+To build the provider:
+
+1. Create a repository, for instance called `terraform-provider-abc`
+
+2. Download the [`abc` package](\assets\2020-02-17-implementing-a-terraform-provider\terraform-provider-abc.zip) into your repository
+
+3. In the `terraform-provider-abc` directory, 
+
+    1. run `go mod tidy`
+    2. run `go build -o "$env:APPDATA/terraform.d/plugins` (on Windows using Powershell)
+       or `go build -o "%APPDATA%\terraform.d\plugins` (on Windows using CMD)  
+       or `go build -o ~/.terraform.d/plugins` (on Linux) 
+
+To run the provider:
+
+1. In the `terraform-provider-abc/examples` directory, 
+
+    1. run `terraform init`
+    2. run `terraform plan`
+    2. run `terraform apply`
+    2. run `terraform destroy`
+
+<br/>
+
 ---
 
 ### Related Posts
 
 - [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
 
+<br/>
 
+---
+
+EDIT: 18-02-2020 - code-corrections + added [Building & Running](#building--running)
