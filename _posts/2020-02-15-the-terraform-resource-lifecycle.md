@@ -180,4 +180,8 @@ Terraform will then apply the terraform configuration, and will use the provider
 ### Related Posts
 
 - [Implementing A Terraform Provider]({% post_url 2020-02-17-implementing-a-terraform-provider %})
+- [Extending The Terraform Resource Lifecycle]({% post_url 2020-02-19-extending-the-terraform-resource-lifecycle %})
 
+<br/>
+
+---

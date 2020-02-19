@@ -261,6 +261,7 @@ func ResourceABCXYZ() *schema.Resource {
             "name": &schema.Schema{
                 Type:     schema.TypeString,
                 Required: true,
+                ForceNew: true,
             },
             "status": &schema.Schema{
                 Type:     schema.TypeString,
@@ -480,14 +481,17 @@ To build the provider:
 
 1. Create a repository, for instance called `terraform-provider-abc`
 
-2. Download the content from the `terraform-provider-abc` in the [`abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip) into your repository
+2. Download the content from the `terraform-provider-abc` in [the `abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip) into your repository
+
+   > :bulb:  
+   > To make this a fully working Terraform provider, we extended the infrastructure-API presented in this post, creating a JSON-file with the `name` and `status` attributes, so the resource can be read, updated and deleted.  The `name` attribute is name of  the file.
 
 3. Assuming you have `go` installed and properly configured,  
    in the `terraform-provider-abc` directory, 
 
     1. run `go mod tidy`  
-    2. run `go build -o "$env:APPDATA/terraform.d/plugins` (on Windows using Powershell)  
-       or `go build -o "%APPDATA%\terraform.d\plugins` (on Windows using CMD)  
+    2. run `go build -o "$env:APPDATA/terraform.d/plugins"` (on Windows using Powershell)  
+       or `go build -o "%APPDATA%\terraform.d\plugins"` (on Windows using CMD)  
        or `go build -o ~/.terraform.d/plugins` (on Linux)  
 
 To run the provider:
@@ -507,9 +511,11 @@ To run the provider:
 ### Related Posts
 
 - [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
+- [Extending The Terraform Resource Lifecycle]({% post_url 2020-02-19-extending-the-terraform-resource-lifecycle %})
 
 <br/>
 
 ---
 
-EDIT: 18-02-2020 - code-corrections + added [Building & Running](#building--running)
+EDIT 18-02-2020: code-corrections + added [Building & Running](#building--running) section  
+EDIT 19-02-2020: extended the infrastructure-API in [the `abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip)  
