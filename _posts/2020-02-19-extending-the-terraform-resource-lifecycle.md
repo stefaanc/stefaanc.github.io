@@ -2,7 +2,7 @@
 layout: post
 title: "Extending The Terraform Resource Lifecycle"
 tags: [ terraform-provider ]
-date: 2020-02-18 15:41:55 +0000
+date: 2020-02-19 12:41:55 +0000
 comments: true
 ---
 
@@ -204,7 +204,7 @@ func dataSourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
             d.Set("x_lifecycle", []interface{}{ x_lifecycle })
 
             // set id
-            d.SetId(id)
+            d.SetId(name)
 
             return nil
         }
@@ -288,6 +288,7 @@ func ResourceABCXYZ() *schema.Resource {
             "name": &schema.Schema{
                 Type:     schema.TypeString,
                 Required: true,
+                ForceNew: true,
             },
             "status": &schema.Schema{
                 Type:     schema.TypeString,
@@ -324,6 +325,7 @@ func ResourceABCXYZ() *schema.Resource {
             "name": &schema.Schema{
                 Type:     schema.TypeString,
                 Required: true,
+                ForceNew: true,
             },
             "status": &schema.Schema{
                 Type:     schema.TypeString,
@@ -434,6 +436,10 @@ func resourceABCXYZCreate(d *schema.ResourceData, m interface{}) error {
             x_lifecycle = listOfInterfaces2[0].(map[string]interface{})
         }
     }
+
+    // set the embedded `original` resource
+    // set it to an empty list instead of leaving it nil, so it doesn't trigger an update in subsequent terraform plan
+    d.Set("original", []interface{}{ })
 
     // create the resource in the infrastructure
     err := c.CreateXYZ(name, status)
@@ -571,15 +577,23 @@ func resourceABCXYZDelete(d *schema.ResourceData, m interface{}) error {
     }
 
     // lifecycle customizations: destroy_if_imported
-    if ( x_lifecycle != nil ) && x_lifecycle["imported"].(bool) && !x_lifecycle["destroy_if_imported"].(bool) {
+    if ( x_lifecycle != nil ) || ( x_lifecycle["imported"].(bool) && !x_lifecycle["destroy_if_imported"].(bool) ) {
         // get the embedded `original` resource
-        listOfInterfaces := d.Get("original").([]interface{})
-        original := listOfInterfaces[0].(map[string]interface{})
+        original := map[string]interface{}( nil )
+        listOfInterfaces1, ok = d.GetOk("original")
+        if ok {
+            listOfInterfaces2 := listOfInterfaces1.([]interface{})
+            if len(listOfInterfaces2) > 0 {
+                original = listOfInterfaces2[0].(map[string]interface{})
+            }
+        }
 
         // update the resource in the infrastructure
-        err := c.UpdateXYZ(name, original["status"].(string))
-        if err != nil {
-            return err
+        if original != nil {
+            err := c.UpdateXYZ(name, original["status"].(string))
+            if err != nil {
+                return err
+            }
         }
 
     } else {
@@ -664,6 +678,7 @@ func ResourceABCXYZ() *schema.Resource {
             "name": &schema.Schema{
                 Type:     schema.TypeString,
                 Required: true,
+                ForceNew: true,
             },
             "status": &schema.Schema{
                 Type:     schema.TypeString,
@@ -680,7 +695,7 @@ func ResourceABCXYZ() *schema.Resource {
 }
 ```
 
-To extend the lifecycle, we change this as follows
+To extend the lifecycle, we change this as follows 
 
 ```go
 // github.com/stefaanc/terraform-provider-abc/abc/resource_abc_xyz
@@ -700,6 +715,7 @@ func resourceABCXYZ() *schema.Resource {
             "name": &schema.Schema{
                 Type:     schema.TypeString,
                 Required: true,
+                ForceNew: true,
             },
             "status": &schema.Schema{
                 Type:     schema.TypeString,
@@ -740,6 +756,17 @@ func resourceABCXYZ() *schema.Resource {
         Delete: resourceABCXYZDelete,
     }
 }
+
+func resourceABCXYZOriginal() *schema.Resource {
+    return &schema.Resource{
+        Schema: map[string]*schema.Schema{
+            "status": &schema.Schema{
+                Type:     schema.TypeString,
+                Computed: true,
+            },
+        },
+    }
+}
 ```
 
 > :information_source:  
@@ -748,6 +775,7 @@ func resourceABCXYZ() *schema.Resource {
 >   - We added the embedded `x_lifecycle`-resource.
 > - Identical to a non-persistent resource
 >   - We added the embedded `original`-resource.
+> - Remark that when the resource doesn't exist, it will try to find it on every terraform apply
 
 <br/>
 
@@ -809,13 +837,14 @@ func resourceABCXYZCreate(d *schema.ResourceData, m interface{}) error {
             // set zeroed Terraform state
             d.Set("name",   "")
             d.Set("status", "")
+            d.Set("original", []interface{}{ })
 
             // set computed lifecycle attributes
             x_lifecycle["exists"] = false
             d.Set("x_lifecycle", []interface{}{ x_lifecycle })
 
             // set id
-            d.SetId(id)
+            d.SetId(name)
 
             return nil
         }
@@ -949,13 +978,11 @@ func reourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
             // set zeroed Terraform state
             d.Set("name",   "")
             d.Set("status", "")
+            d.Set("original", []interface{}{ })
 
             // set computed lifecycle attributes
             x_lifecycle["exists"] = false
             d.Set("x_lifecycle", []interface{}{ x_lifecycle })
-
-            // set id
-            d.SetId(id)
 
             return nil
         }
@@ -972,9 +999,6 @@ func reourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
     // set computed lifecycle attributes
     x_lifecycle["exists"] = true
     d.Set("x_lifecycle", []interface{}{ x_lifecycle })
-
-    // set id
-    d.SetId(name)
 
     return nil
 }
@@ -1028,13 +1052,21 @@ func resourceABCXYZDelete(d *schema.ResourceData, m interface{}) error {
     name := d.Get("name").(string)
 
     // get the embedded `original` resource
-    listOfInterfaces := d.Get("original").([]interface{})
-    original := listOfInterfaces[0].(map[string]interface{})
+    original := map[string]interface{}( nil )
+    listOfInterfaces1, ok := d.GetOk("original")
+    if ok {
+        listOfInterfaces2 := listOfInterfaces1.([]interface{})
+        if len(listOfInterfaces2) > 0 {
+            original = listOfInterfaces2[0].(map[string]interface{})
+        }
+    }
 
     // update the resource in the infrastructure
-    err := c.UpdateXYZ(name, original["status"].(string))
-    if err != nil {
-        return err
+    if original != nil {
+        err := c.UpdateXYZ(name, original["status"].(string))
+        if err != nil {
+            return err
+        }
     }
 
     // set id
@@ -1051,9 +1083,46 @@ func resourceABCXYZDelete(d *schema.ResourceData, m interface{}) error {
 
 <br/>
 
+### Building & Running
+
+I prepared a small package for this example provider, in case you want to play with it.
+
+To build the provider:
+
+1. Create a repository, for instance called `terraform-provider-abc`
+
+2. Download the content from the `terraform-provider-abc` in [the extended `abc` package](/assets/2020-02-19-extending-the-terraform-resource-lifecycle/terraform-provider-abc-extended.zip) or [the persistent `abc` package](/assets/2020-02-19-extending-the-terraform-resource-lifecycle/terraform-provider-abc-persistent.zip) into your repository
+
+   > :bulb:  
+   > To make this a fully working Terraform provider, we extended the infrastructure-API presented in this post, creating a JSON-file with the `name` and `status` attributes, so the resource can be read, updated and deleted.  The `name` attribute is name of  the file.
+
+3. Assuming you have `go` installed and properly configured,  
+   in the `terraform-provider-abc` directory, 
+
+    1. run `go mod tidy`  
+    2. run `go build -o "$env:APPDATA/terraform.d/plugins"` (on Windows using Powershell)  
+       or `go build -o "%APPDATA%\terraform.d\plugins"` (on Windows using CMD)  
+       or `go build -o ~/.terraform.d/plugins` (on Linux)  
+
+To run the provider:
+
+1. Assuming you have `terraform` installed and properly configured,  
+   in the `terraform-provider-abc/examples` directory, 
+
+    1. run `terraform init`
+    2. run `terraform plan`
+    2. run `terraform apply`
+    2. run `terraform destroy`
+
+<br/>
+
 ---
 
 ### Related Posts
 
 - [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
 - [Implementing A Terraform Provider]({% post_url 2020-02-17-implementing-a-terraform-provider %})
+
+<br/>
+
+---
