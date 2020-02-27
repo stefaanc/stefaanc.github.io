@@ -211,7 +211,7 @@ Some more info:
 
 ### Trying It Out
 
-I prepared a small package for an provider, in case you want to play with this.  For embedded resources, you may want to change the schema-options in `/abc/resource_abc_xyz.go`
+I prepared a small package for a provider, in case you want to play with this.  For embedded resources, you may want to change the schema-options in `/abc/resource_abc_xyz.go`
 
 To build the provider:
 
