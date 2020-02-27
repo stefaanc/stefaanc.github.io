@@ -1100,7 +1100,7 @@ To build the provider:
    in the `terraform-provider-abc` directory, 
 
     1. run `go mod tidy`  
-    2. run `go build -o "$env:APPDATA/terraform.d/plugins"` (on Windows using Powershell)  
+    2. run `go build -o "$env:APPDATA\terraform.d\plugins"` (on Windows using Powershell)  
        or `go build -o "%APPDATA%\terraform.d\plugins"` (on Windows using CMD)  
        or `go build -o ~/.terraform.d/plugins` (on Linux)  
 
