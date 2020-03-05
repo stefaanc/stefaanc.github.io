@@ -132,7 +132,9 @@ blockquote {
   color: $grey-color;
   border-left: 4px solid $grey-color-light;
   padding-left: $spacing-unit / 2;
+/*
   @include relative-font-size(1.125);
+*/
   letter-spacing: -1px;
   font-style: italic;
 
@@ -253,3 +255,63 @@ table {
     border: 1px solid $grey-color-light;
   }
 }
+
+
+
+/**
+ * Fieldsets
+ */
+fieldset {
+  display: block;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0em;
+  padding-right: 0em;
+  border: none;
+  label {
+    display: block;
+  }
+  input, textarea {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid $grey-color-light;
+    width: 100%;
+    padding: .5em;
+    background-color: lighten($brand-color, 44%);
+    font-family: inherit;
+    font-size: inherit;
+  }
+  input:-webkit-autofill {
+    &, &:hover, &:focus, &:active {
+      -webkit-box-shadow: 0 0 0px 1000px lighten($brand-color, 35%) inset !important;
+    }
+  }
+  input:not(:placeholder-shown), textarea:not(:placeholder-shown) {
+    background-color: lighten($brand-color, 35%);
+  }
+  button {
+    display: block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+    background: none;
+    width: 8em;
+    margin-top: 1em;
+    padding: .65em 1em;
+    background-color: lighten($brand-color, 35%);
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.required label:after {
+  content: "*";
+  color: red;
+}
+

@@ -46,6 +46,13 @@ title: Bookmarks
 
 ---
 
+### ESLint
+
+[eslint configuration](https://eslint.org/docs/user-guide/configuring)  
+[eslint rules](https://eslint.org/docs/rules/)
+
+---
+
 ### Github
 
 [github](https://github.com/)  
@@ -80,17 +87,47 @@ title: Bookmarks
 
 ---
 
+### Javascript
+
+[ECMAScript 5.1 - 2011](https://www.ecma-international.org/ecma-262/5.1/)  
+[ECMAScript 6.0 - 2015](https://www.ecma-international.org/ecma-262/6.0/)  
+[ECMAScript 7.0 - 2016](https://www.ecma-international.org/ecma-262/7.0/)  
+[ECMAScript 8.0 - 2017](https://www.ecma-international.org/ecma-262/8.0/)  
+[ECMAScript 9.0 - 2018](https://www.ecma-international.org/ecma-262/9.0/)  
+[ECMAScript 10.0 - 2019](https://www.ecma-international.org/ecma-262/10.0/)  
+
+Videos:
+
+[Crockford on JavaScript - Volume 1: The Early Years](https://www.youtube.com/watch?v=JxAXlJEmNMg)  
+[Crockford on JavaScript - Chapter 2: And Then There Was JavaScript](https://www.youtube.com/watch?v=RO1Wnu-xKoY)  
+[Crockford on JavaScript - Act III: Function the Ultimate](https://www.youtube.com/watch?v=ya4UHuXNygM)  
+[Crockford on JavaScript - Episode IV: The Metamorphosis of Ajax](https://www.youtube.com/watch?v=Fv9qT9joc0M)  
+[Crockford on JavaScript - Part 5: The End of All Things](https://www.youtube.com/watch?v=47Ceot8yqeI)  
+[Crockford on JavaScript - Scene 6: Loopage](https://www.youtube.com/watch?v=QgwSUtYSUqA)  
+[Crockford on JavaScript - Level 7: ECMAScript 5: The New Parts](https://www.youtube.com/watch?v=UTEqr0IlFKY)  
+[Crockford on JavaScript - Section 8: Programming Style & Your Brain](https://www.youtube.com/watch?v=taaEzHI9xyY)  
+
+---
+
 ### Jekyll
 
 [jekyll](https://jekyllrb.com/docs/)  
 [jekyll minima theme](https://github.com/jekyll/minima)  
 [jekyll on github pages](https://pages.github.com/versions/)  
 [staticman](https://staticman.net/docs/)  
+[staticman installation](https://travisdowns.github.io/blog/2020/02/05/now-with-comments.html#set-up-github-bot-account)  
+
+---
+
+### jQuery
+
+[jquery](https://api.jquery.com/)  
 
 ---
 
 ### JSON
 
+[json](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)  
 [json pointer](https://tools.ietf.org/html/rfc6901)  
 [json reference](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03)  
 [json path](https://goessner.net/articles/JsonPath/)  
@@ -170,6 +207,12 @@ title: Bookmarks
 [powershell w10 &amp; wS2016 commands](https://docs.microsoft.com/en-us/powershell/windows/get-started?view=win10-ps)  
 [powershell hyper-v commands](https://docs.microsoft.com/en-us/powershell/module/hyper-v/new-vm?view=win10-ps)  
 [powershell vmware commands](https://code.vmware.com/docs/7788/cmdlet-reference/doc/index-all_cmdlets.html)  
+
+---
+
+### QUnit
+
+[qunit](https://api.qunitjs.com/)  
 
 ---
 

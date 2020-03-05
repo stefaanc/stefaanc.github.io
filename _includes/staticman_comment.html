@@ -1,0 +1,48 @@
+<div id="comment-{% if include.replying_to != '' %}{{ include.replying_to }}-{% endif %}{{ include.index }}" class="comment">
+  {% if include.replying_to == "" %}
+    <hr class="comment-separator">
+  {% endif %}
+  <div class="comment-header">
+    {% if include.url %}
+      <a href="{{ include.url }}" title="Link to author's URL">
+    {% endif %}
+    <span class="comment-author">{{ include.name }}</span>
+    {% if include.url %}
+      </a>
+    {% endif %}
+    <a href="#comment-{{ include.index }}" title="Permalink to this comment">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {% if include.replying_to == '' %}left a comment{% else %}replied{% endif %} on {{ include.date | date: date_format }}
+    </a>
+  </div>
+  <div class="comment-body">
+    {{ include.message | strip_html | markdownify }}
+  </div>
+</div>
+
+{% if include.replying_to == "" %}
+  <div id="comment-form-container-{{ include.index }}">
+    <div id="comment-form-button-{{ include.index }}">
+      <p class="comment-form-link" onclick="STATICMAN.moveForm('{{ include.index }}', 'Reply to <span class=&quot;comment-author&quot;>{{ include.name }}</span>')">
+         ↩&#xFE0E; Reply to <span class="comment-author">{{ include.name }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="comment-replies">
+    {% capture i %}{{ include.index }}{% endcapture %}
+    {% assign replies = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == i" %}
+    {% assign replies_by_date = replies | sort: "date" | reverse %}
+    {% for reply in replies_by_date %}
+      {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
+      {% assign replying_to = reply.replying_to %}
+      {% assign email       = reply.email %}
+      {% assign name        = reply.name %}
+      {% assign url         = reply.url %}
+      {% assign date        = reply.date %}
+      {% assign message     = reply.message %}
+      {% assign uid         = reply._id %}
+      {% include staticman_comment.html index=index replying_to=replying_to email=email name=name url=url date=date message=message uid=uid %}
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,40 @@
+<section id="comment-section" class="comments">
+
+  <header class="comments-header">
+    <h3>Comments</h3>
+  </header>
+
+  <div id="comment-form-container">
+    {% include staticman_comment_form.html%}
+    <div id="comment-form-button" hidden>
+      <p class="comment-form-link" onclick="STATICMAN.moveForm('', 'Leave a comment')" rel="nofollow">
+         ↩&#xFE0E; Leave a comment
+      </p>
+    </div>
+  </div>
+
+  <!--
+    <p> Page slug is: {{ page.slug }} </p>
+    {{ site.data.comments | inspect }}
+  -->
+
+  {% if site.data.comments[page.slug] %}
+    {% assign comments = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == ''" %}
+    {% assign comments_by_date = comments | sort: "date" | reverse %}
+    {% for comment in comments_by_date %}
+      {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
+      {% assign email       = comment.email %}
+      {% assign name        = comment.name %}
+      {% assign url         = comment.url %}
+      {% assign date        = comment.date %}
+      {% assign message     = comment.message %}
+      {% assign uid         = comment._id %}
+      {% include staticman_comment.html index=index replying_to='' email=email name=name url=url date=date message=message uid=uid %}
+    {% endfor %}
+  {% endif %}
+
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ '/assets/staticman.js' | relative_url }}"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
