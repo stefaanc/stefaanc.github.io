@@ -3,16 +3,16 @@
     <hr class="comment-separator">
   {% endif %}
   <div class="comment-header">
-    {% if include.url %}
+    {% if include.url != "" %}
       <a href="{{ include.url }}" title="Link to author's URL">
     {% endif %}
     <span class="comment-author">{{ include.name }}</span>
-    {% if include.url %}
+    {% if include.url !- "" %}
       </a>
     {% endif %}
     <a href="#comment-{{ include.index }}" title="Permalink to this comment">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      {% if include.replying_to == '' %}left a comment{% else %}replied{% endif %} on {{ include.time | date: date_format }}
+      {% if include.replying_to == "" %}left a comment{% else %}replied{% endif %} on {{ include.time | date: date_format }}
     </a>
   </div>
   <div class="comment-body">
