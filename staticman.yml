@@ -7,7 +7,11 @@ comments:
   #
   # Names of the fields the form is allowed to submit. If a field that is
   # not here is part of the request, an error will be thrown.
+<<<<<<< HEAD
   allowedFields: ["replying_to", name", "email", "url", "message"]
+=======
+  allowedFields: ["name", "email", "url", "message"]
+>>>>>>> a0a28f3350dc6d0a4c04f43c492847cbe2e805a8
 
   # (*) REQUIRED
   #
@@ -16,7 +20,11 @@ comments:
   branch: "master"
 
   # Text to use as the commit message or pull request title. Accepts placeholders.
+<<<<<<< HEAD
   commitMessage: "New comment from '{fields.name}' on '{options.slug}'"
+=======
+  commitMessage: "New comment from {fields.name} on {options.slug}"
+>>>>>>> a0a28f3350dc6d0a4c04f43c492847cbe2e805a8
 
   # (*) REQUIRED
   #
@@ -35,7 +43,11 @@ comments:
     date:
       type: date
       options:
+<<<<<<< HEAD
         format: "iso8601"
+=======
+        format: "timestamp-seconds"
+>>>>>>> a0a28f3350dc6d0a4c04f43c492847cbe2e805a8
 
   # Whether entries need to be appproved before they are published to the main
   # branch. If set to `true`, a pull request will be created for your approval.
@@ -65,7 +77,11 @@ comments:
   # (*) REQUIRED
   #
   # Destination path (directory) for the data files. Accepts placeholders.
+<<<<<<< HEAD
   path: "_data/comments/{options.slug}"
+=======
+  path: "/_data/comments/{options.slug}"
+>>>>>>> a0a28f3350dc6d0a4c04f43c492847cbe2e805a8
 
   # Names of required fields. If any of these isn't in the request or is empty,
   # an error will be thrown.
@@ -79,4 +95,8 @@ comments:
   reCaptcha:
     enabled: true
     siteKey: "6Lcx8t0UAAAAAOJnUmEkrL5vDBAki11b_b-nBEc6"
+<<<<<<< HEAD
     secret: "QLfPSml1HanvAWjaiD+EvRjDb90ie5LRFGdWGhe67okKQvIS0VHTYh9jjIdXKLZFxwR176ZsxTHVzTbVDfxGZ9b5ZdUjdzeYReZSPo4CVV85bUFVnFBM5VFfj/W1+tqV+O50PBbIqwEFVVIJ62k6N+WzbFqqlPsMaL2MGax1zbZCBz/w0MBHV6VbqtRkllG7DCnIYButf97ryVXzzIh9q2AiaTzHwoTyzRI7YtX4cLsPPNfATk0eifN41SSjCNql05CiMLMDid/rrA+zVZjkrj3/jWFwhTTp1UPWGw48jBuJFAqXwrfZxGFnhftpmQFHh1HArLsTautbtT4OMVP9e+KZd+HIvnVlU4pjqWwhRazrpV+WA1Btg68eaC5bv/VEnztrc4YyZ4WE6yzLS4/bmI/SU27SdZbLl+4HIjpgX+rR70TRUMHi5RDs8gHXiFmfMe9wEihNZqFFGRK/OvA9sgb7KK0s3f/kL+xgVNYaGg/2iWslGfuIiL2xxWetI2jW52w/fTv86xtg/mHejPxeEwYShLf2Kz76as/PBtVg8/v02SaLYMUV2+ljUf17tw6Q31qM18uc2VFqQNuO7zUuJmYZnps6Blewjs+xS6wJEDEKKQH6j1u8SKFItCDH4aSYj51tn6aHL/Dr+DCw5aCzRJeu/Wh0IhSPOZxP1cE0UhE="
+=======
+    secret: "QLfPSml1HanvAWjaiD+EvRjDb90ie5LRFGdWGhe67okKQvIS0VHTYh9jjIdXKLZFxwR176ZsxTHVzTbVDfxGZ9b5ZdUjdzeYReZSPo4CVV85bUFVnFBM5VFfj/W1+tqV+O50PBbIqwEFVVIJ62k6N+WzbFqqlPsMaL2MGax1zbZCBz/w0MBHV6VbqtRkllG7DCnIYButf97ryVXzzIh9q2AiaTzHwoTyzRI7YtX4cLsPPNfATk0eifN41SSjCNql05CiMLMDid/rrA+zVZjkrj3/jWFwhTTp1UPWGw48jBuJFAqXwrfZxGFnhftpmQFHh1HArLsTautbtT4OMVP9e+KZd+HIvnVlU4pjqWwhRazrpV+WA1Btg68eaC5bv/VEnztrc4YyZ4WE6yzLS4/bmI/SU27SdZbLl+4HIjpgX+rR70TRUMHi5RDs8gHXiFmfMe9wEihNZqFFGRK/OvA9sgb7KK0s3f/kL+xgVNYaGg/2iWslGfuIiL2xxWetI2jW52w/fTv86xtg/mHejPxeEwYShLf2Kz76as/PBtVg8/v02SaLYMUV2+ljUf17tw6Q31qM18uc2VFqQNuO7zUuJmYZnps6Blewjs+xS6wJEDEKKQH6j1u8SKFItCDH4aSYj51tn6aHL/Dr+DCw5aCzRJeu/Wh0IhSPOZxP1cE0UhE="
+>>>>>>> a0a28f3350dc6d0a4c04f43c492847cbe2e805a8

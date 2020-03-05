@@ -1,7 +1,14 @@
 _id: 48f01140-4869-11ea-830d-298f52001f30
 _parent: 'https://stefaanc.github.io/2020/02/27/the-terraform-plan.html'
+<<<<<<< HEAD
 replying_to: ''
 message: Nice detour post explaining how to make this work!
 name: Thankful Reader
 email: ''
 date: 1580942761
+=======
+message: Nice detour post explaining how to make this work!
+name: Thankful Reader
+email: ''
+date: 1580942762
+>>>>>>> a0a28f3350dc6d0a4c04f43c492847cbe2e805a8
