@@ -7,7 +7,7 @@
       <a href="{{ include.url }}" title="Link to author's URL">
     {% endif %}
     <span class="comment-author">{{ include.name }}</span>
-    {% if include.url !- "" %}
+    {% if include.url != "" %}
       </a>
     {% endif %}
     <a href="#comment-{{ include.index }}" title="Permalink to this comment">
