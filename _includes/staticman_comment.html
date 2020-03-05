@@ -32,7 +32,7 @@
   <div class="comment-replies">
     {% capture i %}{{ include.index }}{% endcapture %}
     {% assign replies = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == i" %}
-    {% assign replies_by_date = replies | sort: "date" | reverse %}
+    {% assign replies_by_date = replies | sort: "_sort" | reverse %}
     {% for reply in replies_by_date %}
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
       {% assign replying_to = reply.replying_to %}

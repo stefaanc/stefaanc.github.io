@@ -100,8 +100,6 @@
 
                 console.log("reCAPTCHA checked");
 
-console.log($(formElement).serialize());
-
                 $.ajax({
                     type: $(formElement).attr('method'),
                     url:  $(formElement).attr('action'),
