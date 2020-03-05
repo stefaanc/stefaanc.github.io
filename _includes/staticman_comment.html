@@ -12,7 +12,7 @@
     {% endif %}
     <a href="#comment-{{ include.index }}" title="Permalink to this comment">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      {% if include.replying_to == '' %}left a comment{% else %}replied{% endif %} on {{ include.date | date: date_format }}
+      {% if include.replying_to == '' %}left a comment{% else %}replied{% endif %} on {{ include.time | date: date_format }}
     </a>
   </div>
   <div class="comment-body">
@@ -36,13 +36,13 @@
     {% for reply in replies_by_date %}
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
       {% assign replying_to = reply.replying_to %}
-      {% assign email       = reply.email %}
       {% assign name        = reply.name %}
+      {% assign email       = reply.email %}
       {% assign url         = reply.url %}
-      {% assign date        = reply.date %}
       {% assign message     = reply.message %}
+      {% assign time        = reply._time %}
       {% assign uid         = reply._id %}
-      {% include staticman_comment.html index=index replying_to=replying_to email=email name=name url=url date=date message=message uid=uid %}
+      {% include staticman_comment.html index=index replying_to=replying_to name=name email=email url=url message=message time=time uid=uid %}
     {% endfor %}
   </div>
 {% endif %}

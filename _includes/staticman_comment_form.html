@@ -3,6 +3,7 @@
     <h4>Leave a comment</h4>
   </header>
   <form  id="comment-form-element" method="POST" action="{{ site.staticman_url }}">
+    <input name="options[parent]" type="hidden" value="{{ page.url | absolute_url }}">
     <input name="options[slug]" type="hidden" value="{{ page.slug }}">
     <input name="options[reCaptcha][siteKey]" type="hidden" value="{{ site.reCaptcha.siteKey }}">
     <input name="options[reCaptcha][secret]" type="hidden" value="{{ site.reCaptcha.secret }}">

@@ -23,13 +23,13 @@
     {% assign comments_by_date = comments | sort: "_sort" | reverse %}
     {% for comment in comments_by_date %}
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
-      {% assign email       = comment.email %}
       {% assign name        = comment.name %}
+      {% assign email       = comment.email %}
       {% assign url         = comment.url %}
-      {% assign date        = comment.date %}
       {% assign message     = comment.message %}
+      {% assign time        = comment._time %}
       {% assign uid         = comment._id %}
-      {% include staticman_comment.html index=index replying_to='' email=email name=name url=url date=date message=message uid=uid %}
+      {% include staticman_comment.html index=index replying_to='' name=name email=email url=url message=message time=time uid=uid %}
     {% endfor %}
   {% endif %}
 
