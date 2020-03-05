@@ -118,7 +118,7 @@ console.log($(formElement).serialize());
                         );
 
                         grecaptcha.reset();
-                        alert('Thanks for posting a comment.  \nYour comment is pending ("https://github.com/stefaanc/stefaanc.github.io/pulls").  \nIt will be made visible after moderation.');
+                        alert('Thanks for posting a comment.  \nYour comment is pending.  \nIt will be made visible after moderation.');
                     },
                     error: function (err) {
                         var errorJSON = JSON.stringify(err);
