@@ -2,12 +2,14 @@
   <div class="comment-header">
     {% if include.replying_to == "" %}
       <hr class="comment-separator">
+    {% else %}
+      <hr class="comment-separator comment-reply-separator">
     {% endif %}
     <div class="comment-avatar">
       {% if include.website != "" %}
         <a href="{{ include.website }}" title="Link to author's website">
       {% endif %}
-      <img src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=48" alt="{{ include.name }}">
+      <img src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=50" alt="{{ include.name | escape }}">
       {% if include.website != "" %}
         </a>
       {% endif %}
@@ -23,9 +25,14 @@
       <br>
       <a href="#comment-{{ include.index }}" title="Permalink to this comment">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {% if include.replying_to == "" %}left a comment{% else %}replied{% endif %} on {{ include.timestamp | divided_by: 1000 | date: date_format }}
+        {% if include.replying_to == "" %}commented{% else %}replied{% endif %} on {{ include.timestamp | divided_by: 1000 | date: date_format }}
       </a>
     </div>
+    {% if include.replying_to == "" %}
+      <hr class="comment-separator-end">
+    {% else %}
+      <hr class="comment-separator-end comment-reply-separator">
+    {% endif %}
   </div>
   <div class="comment-body">
     {{ include.message | strip_html | markdownify }}
@@ -35,8 +42,8 @@
 {% if include.replying_to == "" %}
   <div id="comment-form-container-{{ include.index }}" class="comment-form-container">
     <div id="comment-form-button-{{ include.index }}">
-      <p class="comment-form-link" onclick="STATICMAN.moveForm('{{ include.index }}', 'Reply to <span class=&quot;comment-author&quot;>{{ include.name }}</span>')">
-         ↩&#xFE0E; Reply to <span class="comment-author">{{ include.name }}</span>
+      <p class="comment-form-link" onclick="STATICMAN.moveForm('{{ include.index }}', 'Reply to <span class=&quot;comment-author&quot;>{{ include.name }}</span>')" rel="nofollow">
+         <span class="comment-form-link-reply-symbol">&nbsp;&#11176;&nbsp;</span> Reply to <span class="comment-author">{{ include.name }}</span>
       </p>
     </div>
   </div>

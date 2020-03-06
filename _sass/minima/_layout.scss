@@ -400,8 +400,14 @@
   color: $text-color;
 }
 
+.comment-form-link-reply-symbol {
+  background-color: lighten($brand-color, 15%);
+  color: white;
+}
+
 .comment-separator {
   margin-top: $spacing-unit / 2;
+  border-style: none;
 }
 
 .comment-avatar {
@@ -415,16 +421,27 @@
 }
 
 *:not(a) > .comment-author {
-  color: lighten($text-color, 45%);
+  color: lighten($text-color, 40%);
+}
+
+.comment-separator-end {
+  clear: left;
+  margin-top: 2px;
+  border: 0;
+  border-top: 1px solid;
+}
+
+.comment-separator-end.comment-reply-separator {
+  border: 0;
+  border-top: 1px solid $grey-color-light;
 }
 
 .comment-body {
-  clear: left;
   margin-top: .625em;
 }
 
 .comment-replies {
-  margin-left: 3em;
+  margin-left: 50px;
 }
 
 .g-recaptcha {
