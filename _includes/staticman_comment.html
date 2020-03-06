@@ -33,7 +33,7 @@
 </div>
 
 {% if include.replying_to == "" %}
-  <div id="comment-form-container-{{ include.index }}">
+  <div id="comment-form-container-{{ include.index }}" class="comment-form-container">
     <div id="comment-form-button-{{ include.index }}">
       <p class="comment-form-link" onclick="STATICMAN.moveForm('{{ include.index }}', 'Reply to <span class=&quot;comment-author&quot;>{{ include.name }}</span>')">
          ↩&#xFE0E; Reply to <span class="comment-author">{{ include.name }}</span>
