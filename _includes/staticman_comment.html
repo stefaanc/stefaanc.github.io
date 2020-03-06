@@ -1,19 +1,31 @@
 <div id="comment-{% if include.replying_to != '' %}{{ include.replying_to }}-{% endif %}{{ include.index }}" class="comment">
-  {% if include.replying_to == "" %}
-    <hr class="comment-separator">
-  {% endif %}
   <div class="comment-header">
-    {% if include.url != "" %}
-      <a href="{{ include.url }}" title="Link to author's URL">
+    {% if include.replying_to == "" %}
+      <hr class="comment-separator">
     {% endif %}
-    <span class="comment-author">{{ include.name }}</span>
-    {% if include.url != "" %}
+    <div class="comment-avatar">
+      {% if include.website != "" %}
+        <a href="{{ include.website }}" title="Link to author's website">
+      {% endif %}
+      <img src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=48" alt="{{ include.name }}">
+      {% if include.website != "" %}
+        </a>
+      {% endif %}
+    </div>
+    <div class="comment-title">
+      {% if include.website != "" %}
+        <a href="{{ include.website }}" title="Link to author's website">
+      {% endif %}
+      <span class="comment-author">{{ include.name }}</span>
+      {% if include.website != "" %}
+        </a>
+      {% endif %}
+      <br>
+      <a href="#comment-{{ include.index }}" title="Permalink to this comment">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {% if include.replying_to == "" %}left a comment{% else %}replied{% endif %} on {{ include.timestamp | divided_by: 1000 | date: date_format }}
       </a>
-    {% endif %}
-    <a href="#comment-{{ include.index }}" title="Permalink to this comment">
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      {% if include.replying_to == "" %}left a comment{% else %}replied{% endif %} on {{ include.time | date: date_format }}
-    </a>
+    </div>
   </div>
   <div class="comment-body">
     {{ include.message | strip_html | markdownify }}
@@ -32,17 +44,17 @@
   <div class="comment-replies">
     {% capture i %}{{ include.index }}{% endcapture %}
     {% assign replies = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == i" %}
-    {% assign replies_by_date = replies | sort: "_sort" | reverse %}
+    {% assign replies_by_date = replies | sort: "_timestamp" | reverse %}
     {% for reply in replies_by_date %}
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
       {% assign replying_to = reply.replying_to %}
       {% assign name        = reply.name %}
       {% assign email       = reply.email %}
-      {% assign url         = reply.url %}
+      {% assign website     = reply.website %}
       {% assign message     = reply.message %}
-      {% assign time        = reply._time %}
+      {% assign timestamp   = reply._timestamp %}
       {% assign uid         = reply._id %}
-      {% include staticman_comment.html index=index replying_to=replying_to name=name email=email url=url message=message time=time uid=uid %}
+      {% include staticman_comment.html index=index replying_to=replying_to name=name email=email website=website message=message timestamp=timestamp uid=uid %}
     {% endfor %}
   </div>
 {% endif %}

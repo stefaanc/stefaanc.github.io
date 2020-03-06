@@ -270,9 +270,11 @@ fieldset {
   padding-left: 0em;
   padding-right: 0em;
   border: none;
+
   label {
     display: block;
   }
+
   input, textarea {
     display: block;
     box-sizing: border-box;
@@ -283,14 +285,17 @@ fieldset {
     font-family: inherit;
     font-size: inherit;
   }
+
   input:-webkit-autofill {
     &, &:hover, &:focus, &:active {
       -webkit-box-shadow: 0 0 0px 1000px lighten($brand-color, 35%) inset !important;
     }
   }
+
   input:not(:placeholder-shown), textarea:not(:placeholder-shown) {
     background-color: lighten($brand-color, 35%);
   }
+
   button {
     display: block;
     box-sizing: border-box;

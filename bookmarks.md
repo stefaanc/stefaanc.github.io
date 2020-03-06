@@ -114,6 +114,7 @@ Videos:
 [jekyll](https://jekyllrb.com/docs/)  
 [jekyll minima theme](https://github.com/jekyll/minima)  
 [jekyll on github pages](https://pages.github.com/versions/)  
+[liquid](https://shopify.github.io/liquid/)  
 [staticman](https://staticman.net/docs/)  
 [staticman installation](https://travisdowns.github.io/blog/2020/02/05/now-with-comments.html#set-up-github-bot-account)  
 

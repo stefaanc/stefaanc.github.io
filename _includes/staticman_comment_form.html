@@ -10,19 +10,30 @@
     <input id="comment-form-replying-to" name="fields[replying_to]" type="hidden" value="">
 
     <div class="comment-form-body">
+
       <fieldset class="comment-form-name required">
         <label for="comment-form-name">Name</label>
         <input id="comment-form-name" name="fields[name]" type="text" tabindex="1" placeholder="your name" required/>
       </fieldset>
 
       <fieldset class="comment-form-email">
-        <label for="comment-form-email">E-mail</label>
-        <input id="comment-form-email" name="fields[email]" type="email" tabindex="3" placeholder="your e-mail address (will not be published)"/>
+        <div class="comment-form-tooltip">&#9432
+          <span class="comment-form-tooltip-text">
+            Used for your gravatar.<br>Will NOT be published.
+          </span>
+       </div>
+        <label for="comment-form-email">Email</label>
+        <input id="comment-form-email" name="fields[email]" type="email" tabindex="3" placeholder="your e-mail address"/>
       </fieldset>
 
-      <fieldset class="comment-form-url">
-        <label for="comment-form-url">URL</label>
-        <input id="comment-form-url" name="fields[url]" type="url" tabindex="4" placeholder="your url (will be published)"/>
+      <fieldset class="comment-form-website">
+        <div class="comment-form-tooltip">&#9432
+          <span class="comment-form-tooltip-text">
+            Used when people click your name.<br>Will be published.
+          </span>
+        </div>
+        <label for="comment-form-website">Website</label>
+        <input id="comment-form-website" name="fields[website]" type="website" tabindex="4" placeholder="your website"/>
       </fieldset>
 
       <fieldset class="comment-form-password">
@@ -31,8 +42,13 @@
       </fieldset>
 
       <fieldset class="comment-form-message required">
+        <div class="comment-form-tooltip">&#9432
+          <span class="comment-form-tooltip-text">
+            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>,<br>and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>,<br>but HTML will be stripped.
+          </span>
+        </div>
         <label for="comment-form-message">Message</label>
-        <textarea id="comment-form-message" name="fields[message]" rows="5" tabindex="5" placeholder="your message (markdown is accepted, but html gets stripped)" required></textarea>
+        <textarea id="comment-form-message" name="fields[message]" rows="5" tabindex="5" placeholder="your message" required></textarea>
       </fieldset>
 
       <fieldset class="comment-form-submit">

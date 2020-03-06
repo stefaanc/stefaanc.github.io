@@ -20,16 +20,16 @@
 
   {% if site.data.comments[page.slug] %}
     {% assign comments = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == ''" %}
-    {% assign comments_by_date = comments | sort: "_sort" | reverse %}
+    {% assign comments_by_date = comments | sort: "_timestamp" | reverse %}
     {% for comment in comments_by_date %}
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
       {% assign name        = comment.name %}
       {% assign email       = comment.email %}
-      {% assign url         = comment.url %}
+      {% assign website     = comment.website %}
       {% assign message     = comment.message %}
-      {% assign time        = comment._time %}
+      {% assign timestamp   = comment._timestamp %}
       {% assign uid         = comment._id %}
-      {% include staticman_comment.html index=index replying_to='' name=name email=email url=url message=message time=time uid=uid %}
+      {% include staticman_comment.html index=index replying_to='' name=name email=email website=website message=message timestamp=timestamp uid=uid %}
     {% endfor %}
   {% endif %}
 
