@@ -231,6 +231,15 @@ Videos:
 
 ---
 
+### Unicode
+
+[unicode categories](http://www.fileformat.info/info/unicode/category/index.htm)  
+[unicode currency symbol](http://www.fileformat.info/info/unicode/category/Sc/list.htm)  
+[unicode math symbol](http://www.fileformat.info/info/unicode/category/Sm/list.htm)  
+[unicode other symbols](https://www.fileformat.info/info/unicode/category/So/list.htm)  
+
+---
+
 ### UUID
 
 [uuid generator](https://www.uuidgenerator.net/)  

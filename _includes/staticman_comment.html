@@ -9,7 +9,20 @@
       {% if include.website != "" %}
         <a href="{{ include.website }}" title="Link to author's website">
       {% endif %}
-      <img src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=50" alt="{{ include.name | escape }}">
+      {% if include.email !="" %}
+        <img src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=50" alt="{{ include.name | escape }}">
+      {% else %}
+        {% assign v = include.name | downcase | slice: 0 %}
+        {% assign x = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z" | split: "," %}
+        {% assign y = 0 %}
+        {% for z in x %}
+          {% if v == z %}
+            {% assign y = forloop.index %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        <img src="/assets/images/mystery-man.png" alt="{{ include.name | escape }}" class="mm-{{ include.name | strip | size | plus: y | modulo: 12 }}">
+      {% endif %}
       {% if include.website != "" %}
         </a>
       {% endif %}
