@@ -2,8 +2,8 @@ _id: e010cfd0-63b5-11ea-81d2-4b36a47afbac
 _parent: 'http://localhost:4000/2020/03/01/notes-on-implementing-comments.html'
 replying_to: ''
 name: Stefaan Coussement
-website: ''
-email: ''
+website: 'https://stefaanc.github.io'
+email: 8446cbd132983c8a8917431925987bb3
 password: ''
 message: "### Trying Markdown\r\n\r\nsome paragraph  \r\nanother paragraph\r\n\r\nand another paragraph\r\n\r\na list \r\n\r\n- item 1\r\n- item 2\r\n\r\na fenced block\r\n\r\n```javascript\r\nvar a = 1;\r\nvar b = \"one\";\r\n```\r\n\r\n> some block quote\r\n> very nicely indented\r\n\r\n<br>\r\n\r\nafter a break."
 date: '2020-03-11T16:32:19.313Z'
