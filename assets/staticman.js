@@ -1,5 +1,6 @@
 /* eslint-env browser, jquery */
 /* global grecaptcha */
+/* global showdown */
 
 (function ($) {
     var form = $("#comment-form");
@@ -389,7 +390,7 @@
 
             message: function () {
                 var comment;
-                var messageElement, message;
+                var messageElement, message, converter, html;
 
                 console.log("comment-form message changed");
 
@@ -400,9 +401,13 @@
                 message = $(messageElement).val();
 
                 // update message
+                converter = new showdown.Converter();
+                converter.setFlavor('github');
+                html = converter.makeHtml(message);
+
                 $(comment)
                 .find(".comment-body")
-                    .html(message)
+                    .html(html)
 
                 if ( $(messageElement).data("dontUpdateCommentHeader") ) {
                     $(messageElement)
@@ -521,6 +526,5 @@
 
             updateCommentHeader(index);
         });
-
 
 })(jQuery);

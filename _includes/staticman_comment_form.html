@@ -45,11 +45,11 @@
       <fieldset class="comment-form-message required">
         <div class="comment-form-tooltip">&#128712;
           <span class="comment-form-tooltip-text">
-            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>,<br>and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>.
+            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>,<br>and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>.<br><br>Remark that the preview may show slightly different formatting because we use a different Markdown converter on the client-side, and there is no syntax highlighting at this moment.
           </span>
         </div>
         <label for="comment-form-message">Message</label>
-        <textarea id="comment-form-message" name="fields[message]" rows="5" tabindex="5" placeholder="your message" required onchange="STATICMAN.onChange['message']()"></textarea>
+        <textarea id="comment-form-message" name="fields[message]" rows="10" tabindex="5" placeholder="your message" required onchange="STATICMAN.onChange['message']()"></textarea>
       </fieldset>
 
       <fieldset class="comment-form-reset">

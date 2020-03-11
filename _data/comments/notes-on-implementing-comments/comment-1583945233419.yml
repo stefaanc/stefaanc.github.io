@@ -5,6 +5,6 @@ name: Stefaan Coussement
 website: ''
 email: 8446cbd132983c8a8917431925987bb3
 password: ''
-message: "### Trying XSS injection\r\n\r\n> hello <a name=\"n\"\r\n> href=\"javascript:alert('xss injected')\">*you*</a>"
+message: "### Trying XSS attack\r\n\r\n> hello <a name=\"n\"\r\n> href=\"javascript:alert('xss attack')\">*you*</a>"
 date: '2020-03-11T16:47:13.418Z'
 _timestamp: 1583945233418
