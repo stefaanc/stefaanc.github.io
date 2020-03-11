@@ -264,14 +264,14 @@
 }
 
 .comment-form {
+  width: 100%;
+}
+
+.comment-form-body, .comment-form-footer {
   border: 4px solid $grey-color-light;
   margin: 0.625em 0;
   padding: 0 0.625em;
   overflow: hidden;
-}
-
-.comment-form-body {
-  width: 100%;
 }
 
 .comment-form-name {
@@ -289,18 +289,27 @@
   z-index: -1;
 }
 
+.comment-form-website {
+  float: right;
+  width: 65%;
+}
+
 .comment-form-email {
   float: right;
   width: 65%;
 }
 
-.comment-form-website {
+.comment-form-message {
   width: 100%;
 }
 
-.comment-form-submit, .comment-form-reset, .comment-form-cancel {
+.comment-form-reset, .comment-form-submit, .comment-form-cancel {
   float: right;
   margin-left: 0.625em;
+}
+
+#comment-form-submit, #comment-form-cancel {
+  margin-top: 0.275em;
 }
 
 .comment-form-submit-sending {
@@ -359,7 +368,7 @@
   font-size: $small-font-size;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
   position: absolute;
   z-index: 1000;
   top: 130%;
@@ -367,7 +376,7 @@
   opacity: 0;
   transition: opacity 0.3s;
   width: 260px;
-  margin-left: -246px;   /* width - 14 */
+  margin-left: -256px;   /* width - 4 */
 
   a {
     color: darken(#fff, 15%);
@@ -387,12 +396,26 @@
   border-width: 8px;
   border-style: solid;
   border-color: $brand-color transparent transparent transparent;
-  margin-left: 116px;   /* width / 2 - 14 */
+  margin-left: 121px;   /* width / 2 - padding / 2 - 4 */
 }
 
 .comment-form-tooltip:hover .comment-form-tooltip-text {
   visibility: visible;
   opacity: 1;
+}
+
+.g-recaptcha {
+  margin-top: 1.35em;
+}
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+.grecaptcha-text {
+  margin-top: 0.625em;
+  font-size: $small-font-size * 0.9;
+  color: lighten($text-color, 60%);
 }
 
 .comment-form-link {
@@ -405,14 +428,68 @@
   color: white;
 }
 
-.comment-separator {
-  margin-top: $spacing-unit / 2;
+.comment-form-preview-container {
+  background-color: lighten($grey-color-light, 3%);
+}
+
+.comment-separator-start {
+  /* margin-top: $spacing-unit / 2; */
   border-style: none;
 }
 
 .comment-avatar {
   float: left;
   margin-right: .625em;
+  position: relative;
+  z-index: 1;
+}
+
+.mm {
+  position: absolute;
+  z-index: -1;
+  width: 50px;
+  height: 20px;
+  top: 0;
+  padding-top: 30px;
+  text-align: center;
+  font-size: $small-font-size;
+  color: #ffffff;
+}
+.mm-0 {
+  background-color: #B54739;
+}
+.mm-1 {
+  background-color: #39B547;
+}
+.mm-2 {
+  background-color: #4739B5;
+}
+.mm-3 {
+  background-color: #69B539;
+}
+.mm-4 {
+  background-color: #3969B5;
+}
+.mm-5 {
+  background-color: #B53969;
+}
+.mm-6 {
+  background-color: #B58539;
+}
+.mm-7 {
+  background-color: #39B585;
+}
+.mm-8 {
+  background-color: #8539B5;
+}
+.mm-9 {
+  background-color: #A7B539;
+}
+.mm-10 {
+  background-color: #39A7B5;
+}
+.mm-11 {
+  background-color: #B539A7;
 }
 
 .comment-author {
@@ -420,8 +497,13 @@
   font-style: italic;
 }
 
-*:not(a) > .comment-author {
+*:not(a) > .comment-author, a.disabled > .comment-author {
   color: lighten($text-color, 40%);
+}
+
+a.disabled {
+  cursor: default !important;
+  pointer-events: none;
 }
 
 .comment-separator-end {
@@ -433,7 +515,7 @@
 
 .comment-separator-end.comment-reply-separator {
   border: 0;
-  border-top: 1px solid $grey-color-light;
+  border-top: 1px solid darken($grey-color-light, 15%);
 }
 
 .comment-body {
@@ -441,56 +523,5 @@
 }
 
 .comment-replies {
-  margin-left: 50px;
-}
-
-.g-recaptcha {
-  margin-top: 1.35em;
-}
-
-.grecaptcha-badge {
-  visibility: hidden !important;
-}
-
-.grecaptcha-text {
-  margin-top: 1.35em;
-  font-size: $small-font-size * 0.9;
-  color: lighten($text-color, 60%);
-}
-
-.mm-0 {
-  background-color: #B54739
-}
-.mm-1 {
-  background-color: #39B547
-}
-.mm-2 {
-  background-color: #4739B5
-}
-.mm-3 {
-  background-color: #69B539
-}
-.mm-4 {
-  background-color: #3969B5
-}
-.mm-5 {
-  background-color: #B53969
-}
-.mm-6 {
-  background-color: #B58539
-}
-.mm-7 {
-  background-color: #39B585
-}
-.mm-8 {
-  background-color: #8539B5
-}
-.mm-9 {
-  background-color: #A7B539
-}
-.mm-10 {
-  background-color: #39A7B5
-}
-.mm-11 {
-  background-color: #B539A7
+  padding-left: 50px;
 }

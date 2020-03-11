@@ -1,0 +1,28 @@
+{% include staticman_comment.html index=index replying_to=replying_to name=name email=email website=website message=message timestamp=timestamp uid=uid %}
+
+{% if include.replying_to == "" %}
+  <div id="comment-form-container-{{ include.index }}" class="comment-form-container">
+    <div id="comment-form-link-{{ include.index }}">
+      <p class="comment-form-link" onclick="STATICMAN.moveForm('{{ include.index }}', 'Reply to <span class=&quot;comment-author&quot;>{{ include.name }}</span>')" rel="nofollow">
+         <span class="comment-form-link-reply-symbol">&nbsp;&#11176;&nbsp;</span> Reply to <span class="comment-author">{{ include.name }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="comment-replies">
+    {% capture i %}{{ include.index }}{% endcapture %}
+    {% assign replies = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == i" %}
+    {% assign replies_by_date = replies | sort: "_timestamp" | reverse %}
+    {% for reply in replies_by_date %}
+      {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
+      {% assign replying_to = reply.replying_to %}
+      {% assign name        = reply.name %}
+      {% assign email       = reply.email %}
+      {% assign website     = reply.website %}
+      {% assign message     = reply.message %}
+      {% assign timestamp   = reply._timestamp %}
+      {% assign uid         = reply._id %}
+      {% include staticman_comments_item.html index=index replying_to=replying_to name=name email=email website=website message=message timestamp=timestamp uid=uid %}
+    {% endfor %}
+  </div>
+{% endif %}

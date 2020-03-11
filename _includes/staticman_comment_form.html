@@ -1,7 +1,4 @@
 <div id="comment-form" class="comment-form">
-  <header class="comment-form-header">
-    <h4>Leave a comment</h4>
-  </header>
   <form  id="comment-form-element" method="POST" action="{{ site.staticman_url }}">
     <input name="options[parent]" type="hidden" value="{{ page.url | absolute_url }}">
     <input name="options[slug]" type="hidden" value="{{ page.slug }}">
@@ -11,9 +8,23 @@
 
     <div class="comment-form-body">
 
+      <header class="comment-form-header">
+        <h4>Leave a comment</h4>
+      </header>
+
       <fieldset class="comment-form-name required">
         <label for="comment-form-name">Name</label>
-        <input id="comment-form-name" name="fields[name]" type="text" tabindex="1" placeholder="your name" required/>
+        <input id="comment-form-name" name="fields[name]" type="text" tabindex="1" placeholder="your name" required onchange="STATICMAN.onChange['name']()"/>
+      </fieldset>
+
+      <fieldset class="comment-form-website">
+        <div class="comment-form-tooltip">&#128712;
+          <span class="comment-form-tooltip-text">
+            Used when people click on <br>your name or avatar.
+          </span>
+        </div>
+        <label for="comment-form-website">Website</label>
+        <input id="comment-form-website" name="fields[website]" type="website" tabindex="2" placeholder="your website" onchange="STATICMAN.onChange['website']()"/>
       </fieldset>
 
       <fieldset class="comment-form-email">
@@ -23,40 +34,38 @@
           </span>
        </div>
         <label for="comment-form-email">Email</label>
-        <input id="comment-form-email" name="fields[email]" type="email" tabindex="3" placeholder="your e-mail address"/>
-      </fieldset>
-
-      <fieldset class="comment-form-website">
-        <div class="comment-form-tooltip">&#128712;
-          <span class="comment-form-tooltip-text">
-            Used when people click on your name.<br>Will be published.
-          </span>
-        </div>
-        <label for="comment-form-website">Website</label>
-        <input id="comment-form-website" name="fields[website]" type="website" tabindex="4" placeholder="your website"/>
+        <input id="comment-form-email" name="fields[email]" type="email" tabindex="3" placeholder="your e-mail address" onchange="STATICMAN.onChange['email']()"/>
       </fieldset>
 
       <fieldset class="comment-form-password">
         <label for="comment-form-password">Password</label>
-        <input id="comment-form-password" name="fields[password]" type="text" tabindex="2" placeholder="your password" autocomplete="none"/>
+        <input id="comment-form-password" name="fields[password]" type="text" tabindex="4" placeholder="your password" onchange="STATICMAN.onChange['password']()" autocomplete="none"/>
       </fieldset>
 
       <fieldset class="comment-form-message required">
         <div class="comment-form-tooltip">&#128712;
           <span class="comment-form-tooltip-text">
-            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>,<br>and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>,<br>but HTML will be stripped.
+            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>,<br>and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>.
           </span>
         </div>
         <label for="comment-form-message">Message</label>
-        <textarea id="comment-form-message" name="fields[message]" rows="5" tabindex="5" placeholder="your message" required></textarea>
-      </fieldset>
-
-      <fieldset class="comment-form-submit">
-        <button id="comment-form-submit" type="submit" tabindex="6">Submit</button>
+        <textarea id="comment-form-message" name="fields[message]" rows="5" tabindex="5" placeholder="your message" required onchange="STATICMAN.onChange['message']()"></textarea>
       </fieldset>
 
       <fieldset class="comment-form-reset">
-        <button id="comment-form-reset" type="reset" tabindex="7">Clear</button>
+        <button id="comment-form-reset" type="reset" tabindex="6">Clear</button>
+      </fieldset>
+
+    </div>
+
+    <div class="comment-form-preview-container">
+      {% include staticman_comment.html replying_to="" index=0 name="" email="" website="" message="" %}
+    </div>
+
+    <div class="comment-form-footer">
+
+      <fieldset class="comment-form-submit">
+        <button id="comment-form-submit" type="submit" tabindex="7">Submit</button>
       </fieldset>
 
       <fieldset class="comment-form-cancel">
