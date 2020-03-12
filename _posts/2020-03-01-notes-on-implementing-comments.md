@@ -108,8 +108,6 @@ During testing, I kept pressing `Enter` after filling an input-field.  This trig
 
 - find an XSS filter
 - add client-side syntax-highlighting in comment-preview
-- add support for github avatar
-- add support for libravatar
 
 Not related to comments, but possibly of interest for posts
 - add permalinks to headers
