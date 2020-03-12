@@ -302,7 +302,7 @@ fieldset {
     }
   }
 
-  input:not(:placeholder-shown), textarea:not(:placeholder-shown) {
+  input:not(:placeholder-shown), textarea:not(:placeholder-shown), select:not(:placeholder-shown) {
     background-color: lighten($brand-color, 35%);
   }
 
