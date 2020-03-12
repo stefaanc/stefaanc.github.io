@@ -8,7 +8,8 @@
     function updateCommentHeader(index) {
         var comment;
         var replyingTo;
-        var name, initial, colour;
+        var name, initial, colour, username;
+        var avatar;
         var email;
         var website;
         var timestamp, date, months;
@@ -29,6 +30,7 @@
         // get data
         replyingTo = $(comment).attr("data-replying_to");
         name = $(comment).attr("data-name");
+        avatar = $(comment).attr("data-avatar");
         email = $(comment).attr("data-email");
         website = $(comment).attr("data-website");
         timestamp = $(comment).attr("data-timestamp");
@@ -74,7 +76,24 @@
             initial = name.charAt(0).toUpperCase();
         }
 
-        if ( !email ) {
+        if ( ( avatar == "github" ) && name ) {
+            username = name.replace(/\s/g, '-');
+
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "https://github.com/" + username + ".png");
+        }
+        else if ( ( avatar == "gravatar" ) && email ) {
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "https://secure.gravatar.com/avatar/" + email + "?d=mm&s=50");
+        }
+        else if ( ( avatar == "libravatar" ) && email ) {
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "https://seccdn.libravatar.org/avatar/" + email + "?d=mm&s=50");
+        }
+        else {
             $(comment)
             .find(".comment-avatar img")
                 .attr("src", "/assets/images/mystery-man.png");
@@ -86,11 +105,6 @@
                 .html(initial)
                 .removeClass("mm-0 mm-1 mm-2 mm-3 mm-4 mm-5 mm-6 mm-7 mm-8 mm-9 mm-10 mm-11")
                 .addClass("mm-" + colour);
-        }
-        else {
-            $(comment)
-            .find(".comment-avatar img")
-                .attr("src", "https://www.gravatar.com/avatar/" + email + "?d=mm&s=50");
         }
 
         // update author
@@ -159,6 +173,10 @@
         setTimeout(function () {
             $(formElement)
             .find("#comment-form-name")
+                .data("dontUpdateCommentHeader", true)
+                .trigger("change")
+            .end()
+            .find("#comment-form-avatar")
                 .data("dontUpdateCommentHeader", true)
                 .trigger("change")
             .end()
@@ -326,6 +344,31 @@
 
                 if ( $(nameElement).data("dontUpdateCommentHeader") ) {
                     $(nameElement)
+                        .removeData("dontUpdateCommentHeader");
+                }
+                else {
+                    updateCommentHeader("0");
+                }
+            },
+
+            avatar: function () {
+                var comment;
+                var avatarElement, avatar;
+
+                console.log("comment-form avatar changed");
+
+                comment = $(form).find("#comment-0");
+
+                // get data
+                avatarElement = $(form).find("#comment-form-avatar");
+                avatar = $(avatarElement).val();
+
+                // update data
+                $(comment)
+                    .attr("data-avatar", avatar)
+
+                if ( $(avatarElement).data("dontUpdateCommentHeader") ) {
+                    $(avatarElement)
                         .removeData("dontUpdateCommentHeader");
                 }
                 else {

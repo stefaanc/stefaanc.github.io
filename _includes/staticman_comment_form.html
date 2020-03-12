@@ -27,19 +27,29 @@
         <input id="comment-form-website" name="fields[website]" type="website" tabindex="2" placeholder="your website" onchange="STATICMAN.onChange['website']()"/>
       </fieldset>
 
+      <fieldset class="comment-form-avatar">
+        <label for="comment-form-avatar">Avatar</label>
+        <select id="comment-form-avatar" name="fields[avatar]" size="1" tabindex="3" onchange="STATICMAN.onChange['avatar']()">
+          <option value="local" selected>local</option>
+          <option value="github">github</option>
+          <option value="gravatar">gravatar</option>
+          <option value="libravatar">libravatar</option>
+        </select>
+      </fieldset>
+
       <fieldset class="comment-form-email">
         <div class="comment-form-tooltip">&#128712;
           <span class="comment-form-tooltip-text">
-            Used for your <a href="https://en.gravatar.com/support/how-to-sign-up/">Gravatar</a>.<br>Will NOT be published.
+            Used for your <a href="https://en.gravatar.com/support/how-to-sign-up/">Gravatar</a> or <a href="https://www.libravatar.org/">Libravatar</a>.<br>Will NOT be published.
           </span>
        </div>
         <label for="comment-form-email">Email</label>
-        <input id="comment-form-email" name="fields[email]" type="email" tabindex="3" placeholder="your e-mail address" onchange="STATICMAN.onChange['email']()"/>
+        <input id="comment-form-email" name="fields[email]" type="email" tabindex="4" placeholder="your e-mail address" onchange="STATICMAN.onChange['email']()"/>
       </fieldset>
 
       <fieldset class="comment-form-password">
         <label for="comment-form-password">Password</label>
-        <input id="comment-form-password" name="fields[password]" type="text" tabindex="4" placeholder="your password" onchange="STATICMAN.onChange['password']()" autocomplete="none"/>
+        <input id="comment-form-password" name="fields[password]" type="text" tabindex="9" placeholder="your password" onchange="STATICMAN.onChange['password']()" autocomplete="none"/>
       </fieldset>
 
       <fieldset class="comment-form-message required">
@@ -59,7 +69,7 @@
     </div>
 
     <div class="comment-form-preview-container">
-      {% include staticman_comment.html replying_to="" index=0 name="" email="" website="" message="" %}
+      {% include staticman_comment.html replying_to="" index=0 name="" avatar="" email="" website="" message="" %}
     </div>
 
     <div class="comment-form-footer">

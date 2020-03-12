@@ -2,6 +2,7 @@
     data-index       = "{{ include.index }}"
     data-replying_to = "{{ include.replying_to }}"
     data-name        = "{{ include.name }}"
+    data-avatar      = "{{ include.avatar }}"
     data-email       = "{{ include.email }}"
     data-website     = "{{ include.website }}"
     data-timestamp   = "{{ include.timestamp }}"
@@ -31,7 +32,7 @@
         <a href="{{ include.website }}" title="Link to author's website">
       {% endif %}
         <div class="mm mm-{{ include.name | strip | size | plus: y | modulo: 12 }}">{{ initial | upcase }}</div>
-        <img src="/assets/images/mystery-man.png" alt="{{ include.name | escape }}">
+        <img src="/assets/images/mystery-man.png" alt="{{ include.name | escape }}" onerror="this.src='/assets/images/mystery-man.png';" width="50" height="50">
       </a>
     </div>
     <div class="comment-title">

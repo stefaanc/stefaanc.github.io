@@ -20,12 +20,13 @@
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
       {% assign replying_to = "" %}
       {% assign name        = comment.name %}
+      {% assign avatar      = comment.avatar %}
       {% assign email       = comment.email %}
       {% assign website     = comment.website %}
       {% assign message     = comment.message %}
       {% assign timestamp   = comment._timestamp %}
       {% assign uid         = comment._id %}
-      {% include staticman_comments_item.html index=index replying_to=replying_to name=name email=email website=website message=message timestamp=timestamp uid=uid %}
+      {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message timestamp=timestamp uid=uid %}
     {% endfor %}
   {% endif %}
 
