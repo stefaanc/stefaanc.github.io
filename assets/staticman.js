@@ -41,6 +41,32 @@
             message = message.trim();
         }
 
+        // reset profanity-form field
+        $(form).find("#comment-form-profanity")
+            .val("");
+        $(comment)
+            .attr("data-profanity", "");
+
+        // check for profanity
+        $(comment)
+        .find(".comment-body")
+            .profanityFilter({
+                externalSwears: "/assets/swearWords.json",
+                profaneText: function () {
+
+                    console.log("profanity warning");
+
+                    // update form field
+                    $(form).find("#comment-form-profanity")
+                        .val("warning");
+
+                    // update comment data
+                    $(comment)
+                        .attr("data-profanity", "warning");
+
+                }
+            });
+
         // show or hide preview
         if (index == "0") {
             if ( !name && !message ) {
@@ -546,32 +572,6 @@
                 $(comment)
                 .find(".comment-body")
                     .html(html);
-
-                // reset profanity-form field
-                $(form).find("#comment-form-profanity")
-                    .val("");
-                $(comment)
-                    .attr("data-profanity", "");
-
-                // check for profanity
-                $(comment)
-                .find(".comment-body")
-                    .profanityFilter({
-                        externalSwears: "/assets/swearWords.json",
-                        profaneText: function () {
-
-                            console.log("profanity warning");
-
-                            // update form field
-                            $(form).find("#comment-form-profanity")
-                                .val("warning");
-
-                            // update comment data
-                            $(comment)
-                                .attr("data-profanity", "warning");
-
-                        }
-                    });
 
                 if ( $(messageElement).data("dontUpdateCommentHeader") ) {
                     $(messageElement)
