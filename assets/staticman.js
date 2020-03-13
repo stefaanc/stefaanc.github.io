@@ -42,8 +42,10 @@
         }
 
         // reset profanity-form field
-        $(form).find("#comment-form-profanity")
-            .val("");
+        if (index == "0") {
+            $(form).find("#comment-form-profanity")
+                .val("");
+        }
         $(comment)
             .attr("data-profanity", "");
 
@@ -57,8 +59,10 @@
                     console.log("profanity warning");
 
                     // update form field
-                    $(form).find("#comment-form-profanity")
-                        .val("warning");
+                    if (index == "0") {
+                        $(form).find("#comment-form-profanity")
+                            .val("warning");
+                    }
 
                     // update comment data
                     $(comment)
