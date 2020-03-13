@@ -2,7 +2,7 @@ _id: 5582cf10-64ac-11ea-a7fb-4d7edfc76239
 _parent: 'http://localhost:4000/2020/03/01/notes-on-implementing-comments.html'
 replying_to: '2'
 name: stefaanc
-website: ''
+website: https://github.com/stefaanc
 avatar: github
 email: ''
 password: ''
