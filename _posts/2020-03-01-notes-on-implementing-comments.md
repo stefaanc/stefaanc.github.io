@@ -85,6 +85,8 @@ Similarly, this is also possible for facebook when using a facebook website, twi
 
 I also implemented a fall-back solution.  I took the `mystery-man` avatar from Gravatar and made the man's profile transparent.  I'm using a coloured background for the image and added the first initial of user's name.  The colour depends on the initial and the length of the name.  I added 12 background colours.
 
+Finally, I added a profanity-filter for the comment and changes the avatar if the message has swear words.
+
 <br>
 
 ### A Comment Preview
