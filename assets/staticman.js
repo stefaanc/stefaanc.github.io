@@ -27,20 +27,6 @@
                 .attr("data-timestamp", timestamp);
         }
 
-        // get data
-        replyingTo = $(comment).attr("data-replying_to");
-        name = $(comment).attr("data-name");
-        avatar = $(comment).attr("data-avatar");
-        email = $(comment).attr("data-email");
-        website = $(comment).attr("data-website");
-        timestamp = $(comment).attr("data-timestamp");
-        message = $(comment).find(".comment-body").html();
-        profanity = $(comment).attr("data-profanity");
-
-        if ( message ) {
-            message = message.trim();
-        }
-
         // reset profanity-form field
         if (index == "0") {
             $(form).find("#comment-form-profanity")
@@ -70,6 +56,20 @@
 
                 }
             });
+
+        // get data
+        replyingTo = $(comment).attr("data-replying_to");
+        name = $(comment).attr("data-name");
+        avatar = $(comment).attr("data-avatar");
+        email = $(comment).attr("data-email");
+        website = $(comment).attr("data-website");
+        timestamp = $(comment).attr("data-timestamp");
+        message = $(comment).find(".comment-body").html();
+        profanity = $(comment).attr("data-profanity");
+
+        if ( message ) {
+            message = message.trim();
+        }
 
         // show or hide preview
         if (index == "0") {
