@@ -111,6 +111,7 @@ During testing, I kept pressing `Enter` after filling an input-field.  This trig
 
 - find an XSS filter
 - add client-side syntax-highlighting in comment-preview
+- support for mailgun or alternative
 
 Not related to comments, but possibly of interest for posts
 - add permalinks to headers
