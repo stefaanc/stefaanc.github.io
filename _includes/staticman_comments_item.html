@@ -1,4 +1,4 @@
-{% include staticman_comment.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message timestamp=timestamp uid=uid %}
+{% include staticman_comment.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity timestamp=timestamp uid=uid %}
 
 {% if include.replying_to == "" %}
   <div id="comment-form-container-{{ include.index }}" class="comment-form-container">
@@ -21,9 +21,10 @@
       {% assign email       = reply.email %}
       {% assign website     = reply.website %}
       {% assign message     = reply.message %}
+      {% assign profanity   = reply.profanity %}
       {% assign timestamp   = reply._timestamp %}
       {% assign uid         = reply._id %}
-      {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message timestamp=timestamp uid=uid %}
+      {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity timestamp=timestamp uid=uid %}
     {% endfor %}
   </div>
 {% endif %}

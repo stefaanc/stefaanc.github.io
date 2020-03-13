@@ -13,7 +13,7 @@
         var email;
         var website;
         var timestamp, date, months;
-        var message;
+        var message, profanity;
 
         console.log("updating header for '#comment-" + index + "'");
 
@@ -35,6 +35,7 @@
         website = $(comment).attr("data-website");
         timestamp = $(comment).attr("data-timestamp");
         message = $(comment).find(".comment-body").html();
+        profanity = $(comment).attr("data-profanity");
 
         if ( message ) {
             message = message.trim();
@@ -152,7 +153,12 @@
             }
         }
 
-        if ( ( avatar == "github" ) && checkWebsite("github") ) {
+        if ( profanity ) {
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "/assets/images/devil.png");
+        }
+        else if ( ( avatar == "github" ) && checkWebsite("github") ) {
             $(comment)
             .find(".comment-avatar img")
                 .attr("src", "https://github.com/" + userid + ".png");
@@ -429,7 +435,7 @@
 
                 // update data
                 $(comment)
-                    .attr("data-name", name)
+                    .attr("data-name", name);
 
                 if ( $(nameElement).data("dontUpdateCommentHeader") ) {
                     $(nameElement)
@@ -454,7 +460,7 @@
 
                 // update data
                 $(comment)
-                    .attr("data-avatar", avatar)
+                    .attr("data-avatar", avatar);
 
                 if ( $(avatarElement).data("dontUpdateCommentHeader") ) {
                     $(avatarElement)
@@ -482,7 +488,7 @@
 
                 // update data
                 $(comment)
-                    .attr("data-email", email)
+                    .attr("data-email", email);
 
                 if ( $(emailElement).data("dontUpdateCommentHeader") ) {
                     $(emailElement)
@@ -507,7 +513,7 @@
 
                 // update data
                 $(comment)
-                    .attr("data-website", website)
+                    .attr("data-website", website);
 
                 if ( $(websiteElement).data("dontUpdateCommentHeader") ) {
                     $(websiteElement)
@@ -539,7 +545,33 @@
 
                 $(comment)
                 .find(".comment-body")
-                    .html(html)
+                    .html(html);
+
+                // reset profanity-form field
+                $(form).find("#comment-form-profanity")
+                    .val("");
+                $(comment)
+                    .attr("data-profanity", "");
+
+                // check for profanity
+                $(comment)
+                .find(".comment-body")
+                    .profanityFilter({
+                        externalSwears: "/assets/swearWords.json",
+                        profaneText: function () {
+
+                            console.log("profanity warning");
+
+                            // update form field
+                            $(form).find("#comment-form-profanity")
+                                .val("warning");
+
+                            // update comment data
+                            $(comment)
+                                .attr("data-profanity", "warning");
+
+                        }
+                    });
 
                 if ( $(messageElement).data("dontUpdateCommentHeader") ) {
                     $(messageElement)

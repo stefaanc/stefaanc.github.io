@@ -24,9 +24,10 @@
       {% assign email       = comment.email %}
       {% assign website     = comment.website %}
       {% assign message     = comment.message %}
+      {% assign profanity   = comment.profanity %}
       {% assign timestamp   = comment._timestamp %}
       {% assign uid         = comment._id %}
-      {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message timestamp=timestamp uid=uid %}
+      {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity timestamp=timestamp uid=uid %}
     {% endfor %}
   {% endif %}
 
@@ -34,6 +35,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="{{ '/assets/jquery.md5.js' | relative_url }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ '/assets/jquery.profanityfilter.js' | relative_url }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ '/assets/staticman.js' | relative_url }}" type="text/javascript" charset="utf-8"></script>
 <script src="https://www.google.com/recaptcha/api.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" type="text/javascript" charset="utf-8"></script>
