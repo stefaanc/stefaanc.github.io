@@ -117,6 +117,7 @@ Videos:
 [liquid](https://shopify.github.io/liquid/)  
 [staticman](https://staticman.net/docs/)  
 [staticman installation](https://travisdowns.github.io/blog/2020/02/05/now-with-comments.html#set-up-github-bot-account)  
+[seo optimization](https://varvy.com/)  
 
 ---
 
