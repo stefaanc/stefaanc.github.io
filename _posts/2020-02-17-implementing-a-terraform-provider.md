@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Implementing A Terraform Provider"
+description: "I recently started working on Terraform Provider plugins.  In this post I'm showing how to implement a simple Terraform provider."
 tags: [ terraform-provider ]
 date: 2020-02-17 14:18:37 +0000
 comments: true

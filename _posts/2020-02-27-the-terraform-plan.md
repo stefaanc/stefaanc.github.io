@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Terraform Plan"
+description: "I recently started working on Terraform Provider plugins.  In this post I'm discussing the Terraform plan."
 tags: [ terraform, terraform-provider ]
 date: 2020-02-27 08:28:16 +0000
 comments: true

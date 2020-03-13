@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Terraform Resource Lifecycle"
+description: "I recently started working on Terraform Provider plugins.  In this post I'm discussing the Terraform resource lifecycle."
 tags: [ terraform, terraform-provider ]
 date: 2020-02-15 14:41:12 +0000
 comments: true
