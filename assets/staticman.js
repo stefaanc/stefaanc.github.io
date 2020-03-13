@@ -8,7 +8,7 @@
     function updateCommentHeader(index) {
         var comment;
         var replyingTo;
-        var name, initial, colour, username;
+        var name, initial, colour, userid;
         var avatar;
         var email;
         var website;
@@ -76,12 +76,109 @@
             initial = name.charAt(0).toUpperCase();
         }
 
-        if ( ( avatar == "github" ) && name ) {
-            username = name.replace(/\s/g, '-');
+        colour = ( "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(initial) + 1 + name.length ) % 12;
 
+        $(comment)
+        .find(".mm")
+            .html(initial)
+            .removeClass("mm-0 mm-1 mm-2 mm-3 mm-4 mm-5 mm-6 mm-7 mm-8 mm-9 mm-10 mm-11")
+            .addClass("mm-" + colour);
+
+        function checkWebsite(platform) {
+            var ws = website;
+
+            if ( !website ) {
+                return false;
+            }
+
+            if ( ws.startsWith("http:") ) {
+                ws = ws.substring(5);
+            }
+            else if ( ws.startsWith("https:") ) {
+                ws = ws.substring(6);
+            }
+
+            if ( ws.startsWith("//") ) {
+                ws = ws.substring(2);
+            }
+
+            if ( ws.startsWith("www.") ) {
+                ws = ws.substring(4);
+            }
+
+            switch ( platform ) {
+                case "github":
+                    // try github
+                    userid = ws.match(/^github.com\/([^/?#]*)/);
+                    if ( userid && userid[1] ) {
+                        userid = userid[1];
+                        return true;
+                    }
+
+                    // try github pages
+                    userid = ws.match(/^([^/.]*)\.github.io([/?#]|$)/);
+                    if ( userid && userid[1] ) {
+                        userid = userid[1];
+                        return true;
+                    }
+
+                    return false;
+                case "facebook":
+                    userid = ws.match(/^facebook.com\/([^/?#]*)/);
+                    if ( userid && userid[1] ) {
+                        userid = userid[1];
+                        return true;
+                    }
+
+                    return false;
+                case "twitter":
+                    userid = ws.match(/^twitter.com\/([^/?#]*)/);
+                    if ( userid && userid[1] ) {
+                        userid = userid[1];
+                        return true;
+                    }
+
+                    return false;
+                case "instagram":
+                    userid = ws.match(/^instagram.com\/([^/?#]*)/);
+                    if ( userid && userid[1] ) {
+                        userid = userid[1];
+                        return true;
+                    }
+
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        if ( ( avatar == "github" ) && checkWebsite("github") ) {
             $(comment)
             .find(".comment-avatar img")
-                .attr("src", "https://github.com/" + username + ".png");
+                .attr("src", "https://github.com/" + userid + ".png");
+        }
+        else if ( ( avatar == "facebook" ) && checkWebsite("facebook") ) {
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "https://graph.facebook.com/" + userid + "/picture");
+        }
+        else if ( ( avatar == "twitter" ) && checkWebsite("twitter") ) {
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "https://twitter-avatar.now.sh/" + userid);
+        }
+        else if ( ( avatar == "instagram" ) && checkWebsite("instagram") ) {
+            $.get("https://www.instagram.com/" + userid + "/?__a=1")
+            .done(function(data) {
+                $(comment)
+                .find(".comment-avatar img")
+                    .attr("src", data["graphql"]["user"]["profile_pic_url_hd"]);
+            })
+            .fail(function() {
+                $(comment)
+                .find(".comment-avatar img")
+                    .attr("src", "/assets/images/mystery-man.png");
+            })
         }
         else if ( ( avatar == "gravatar" ) && email ) {
             $(comment)
@@ -97,14 +194,6 @@
             $(comment)
             .find(".comment-avatar img")
                 .attr("src", "/assets/images/mystery-man.png");
-
-            colour = ( "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(initial) + 1 + name.length ) % 12;
-
-            $(comment)
-            .find(".mm")
-                .html(initial)
-                .removeClass("mm-0 mm-1 mm-2 mm-3 mm-4 mm-5 mm-6 mm-7 mm-8 mm-9 mm-10 mm-11")
-                .addClass("mm-" + colour);
         }
 
         // update author
@@ -569,5 +658,29 @@
 
             updateCommentHeader(index);
         });
+
+    // trigger preview comment data updates when returning to page
+    setTimeout(function () {
+        $(form)
+        .find("#comment-form-name")
+            .data("dontUpdateCommentHeader", true)
+            .trigger("change")
+        .end()
+        .find("#comment-form-avatar")
+            .data("dontUpdateCommentHeader", true)
+            .trigger("change")
+        .end()
+        .find("#comment-form-email")
+            .data("dontUpdateCommentHeader", true)
+            .trigger("change")
+        .end()
+        .find("#comment-form-website")
+            .data("dontUpdateCommentHeader", true)
+            .trigger("change")
+        .end()
+        .find("#comment-form-message")
+            .trigger("change")
+        .end();
+    }, 1);
 
 })(jQuery);

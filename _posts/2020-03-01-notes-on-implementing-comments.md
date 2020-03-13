@@ -75,14 +75,15 @@ I also needed to add some code to validate the honey-pot field when the form is 
 
 ### Avatars
 
-
 Next step, was adding avatars.  Using [Gravatar](http://en.gravatar.com/) (press the "Create Your Own Gravatar" button) seems to be the standard solution.  However, a lot of people don't like this, because you need to create a Wordpress account for this.  
 
 So I implemented an alternative using [Libravatar](https://www.libravatar.org/).  People still need to provide their email address for this to work, another thing a lot of people don't like.
 
-So for github users I implemented the github avatar.  However this doesn't work for users who are not on github.
+For github users I implemented the github avatar.  The username is taken from the website specified in the form.  Users can either use their github website or github pages website.
 
-So I implemented a fall-back solution.  I took the `mystery-man` avatar from Gravatar and made the man's profile transparent.  I'm using a coloured background for the image and added the first initial of user's name.  The colour depends on the initial and the length of the name.  I added 12 background colours.
+Similarly, this is also possible for facebook when using a facebook website, twitter when using a twitter website and instagram when using a instagram website.
+
+I also implemented a fall-back solution.  I took the `mystery-man` avatar from Gravatar and made the man's profile transparent.  I'm using a coloured background for the image and added the first initial of user's name.  The colour depends on the initial and the length of the name.  I added 12 background colours.
 
 <br>
 
