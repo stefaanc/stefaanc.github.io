@@ -478,7 +478,7 @@ func (c *ABCClient) DeleteXYZ(name string) error {
 
 <br/>
 
-### Building & Running
+### Building & Running It
 
 I prepared a small package for this example provider, in case you want to play with it.
 
