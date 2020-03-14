@@ -1,6 +1,7 @@
 ---
 layout: post
 tag: general
+image: "/assets/images/avatar.png"
 title: "Why \"The Dungeons\""
 date: 2020-02-12 09:28:32 +0000
 comments: false

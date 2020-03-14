@@ -1,6 +1,7 @@
 ---
 layout: post
 tags: [ terraform-provider ]
+image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "Extending The Terraform Resource Lifecycle"
 description: "I recently started working on Terraform Provider plugins.  In this post I'm showing how to implement a couple of extensions to the Terraform resource lifecycle."
@@ -12,7 +13,7 @@ comments: true
 
 I recently started working on Terraform Provider plugins, but there doesn't seem to be much information about plugin-development out there on the internet.  So I decided to collect some of my experience in a couple of posts.
 
-![refresh-plan-apply.png](/assets/images/refresh-plan-apply-small.png)
+![refresh-plan-apply.png](/assets/images/terraform-refresh-plan-apply-badge.png)
 
 <br/>
 

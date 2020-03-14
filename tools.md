@@ -1,5 +1,6 @@
 ---
 layout: page
+image: "/assets/images/avatar.png"
 title: Tools
 toc: true
 ---

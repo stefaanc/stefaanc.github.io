@@ -1,6 +1,7 @@
 ---
 layout: post
 tag: general
+image: "/assets/images/avatar.png"
 
 title: "Notes On Implementing Comments"
 description: "I added the possibility to leave comments to my posts on my jekyll site on Github Pages using Staticman.  In this post I explain what I did and where I got my information from, and I provide some notes and gotchas based on my experience."

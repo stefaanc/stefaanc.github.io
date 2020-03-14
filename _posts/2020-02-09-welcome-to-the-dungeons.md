@@ -1,6 +1,7 @@
 ---
 layout: post
 tag: general
+image: "/assets/images/avatar.png"
 title: "Welcome to the Dungeons"
 date: 2020-02-09 16:15:59 +0000
 comments: false
