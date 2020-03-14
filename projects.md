@@ -1,11 +1,8 @@
 ---
 layout: page
 title: Projects
+toc: true
 ---
-
-- [Kluster](#kluster)  
-- [Other Github Repos](#other-github-repos)  
-<br/>  
 
 ---
 
@@ -55,6 +52,19 @@ This project is refactoring a previous project `DevEnv`, introducing Terraform a
 **ptsession**: some scripts to apply putty configuration improvements and set different background colors
   - [open on github](https://github.com/stefaanc/ptsession)  
   <br/>  
+
+---
+
+### The Dungeons
+
+This project implements my personal website - a static website on [Github Pages](https://pages.github.com/) using [Jekyll](https://jekyllrb.com/).  
+
+On some posts, you can leave comments, implemented using [Staticman](https://staticman.net/) and [Heroku](https://www.heroku.com/home) - more info on this subject can be found in my post ["Notes On Implementing Comments"](https://stefaanc.github.io/2020/03/01/notes-on-implementing-comments.html).  
+
+**stefaanc.github.io**: my person website
+  - [open on github pages](https://stefaanc.github.io)  
+  - [open on github](https://github.com/stefaanc/stefaanc.github.io)  
+  <br/>
 
 ---
 

@@ -11,20 +11,26 @@ layout: default
   <div class="post-content">
     {{ content }}
     {%- if site.posts.size > 0 -%}
-      <ul>
-        {%- for tag in site.tags -%}
-          <li>
-            <a href="#{{ tag[0] }}">{{ tag[0] | capitalize }}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
+      <div class="toc">
+        <h4>On this page</h4>
+          <ul>
+            {%- for tag in site.tags -%}
+              <li>
+                <a href="#{{ tag[0] }}">{{ tag[0] | capitalize }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+      </div>
+      <p><br></p>
     {%- endif -%}
   </div>
 
   {%- if site.posts.size > 0 -%}
     {%- for tag in site.tags -%}
       <hr>
-      <h2 id="{{ tag[0] }}" class="post-list-heading">{{ tag[0] | capitalize }}</h2>
+      <h2 id="{{ tag[0] }}" class="post-list-heading">{{ tag[0] | capitalize }}
+        <a href="#{{ tag[0] }}" class="anchor-heading" title="Permalink to '{{ tag[0] | capitalize }}'">&nbsp;&#128279;&nbsp;</a>
+      </h2>
       <ul class="post-list">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {%- for post in tag[1] -%}

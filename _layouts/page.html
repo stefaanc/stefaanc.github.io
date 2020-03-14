@@ -8,7 +8,15 @@ layout: default
   </header>
 
   <div class="post-content">
-    {{ content }}
+    {%- if page.toc == true -%}
+      <div class="toc">
+        <h4>On this page</h4>
+        {%- include toc.html html=content h_max=4 -%}
+      </div>
+      <p><br></p>
+    {%- endif -%}
+
+    {% include anchor_headings.html html=content h_max=4 anchorBody="&nbsp;&#128279;&nbsp;" anchorClass="anchor-heading" anchorTitle="Permalink to '%heading%'" %}
   </div>
 
 </article>

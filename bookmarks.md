@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Bookmarks
+toc: true
 ---
 
 ---
@@ -115,6 +116,8 @@ Videos:
 [jekyll minima theme](https://github.com/jekyll/minima)  
 [jekyll on github pages](https://pages.github.com/versions/)  
 [liquid](https://shopify.github.io/liquid/)  
+[liquid - table of contents](https://github.com/allejo/jekyll-toc)  
+[liquid - anchor headings](https://github.com/allejo/jekyll-anchor-headings)  
 [staticman](https://staticman.net/docs/)  
 [staticman installation](https://travisdowns.github.io/blog/2020/02/05/now-with-comments.html#set-up-github-bot-account)  
 [seo optimization](https://varvy.com/)  
