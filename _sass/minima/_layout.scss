@@ -257,6 +257,56 @@
 
 
 /**
+ * TOC
+ */
+.toc {
+  display: inline-block;
+  min-width: 40%;
+  border-radius: 25px;
+  margin-bottom: 1.5em;
+  padding: 20px 25px;
+  background-color: lighten($brand-color, 10%);
+  color: #fff;
+
+  ul:first-of-type {
+    margin-bottom: 0;
+  }
+
+  code {
+    border: none;
+    background-color: lighten($brand-color, 20%);
+  }
+
+  a {
+    color: #fff;
+
+    &:visited {
+      color: darken(#fff, 15%);
+    }
+  }
+}
+
+
+
+/**
+ * Anchor-headings
+ */
+h1, h2, h3, h4 {
+  a.anchor-heading {
+    visibility: hidden;
+    font: 24px "Segoe UI Symbol", Symbola;
+    color: lighten($brand-color, 0%);
+  }
+
+  &:hover > a.anchor-heading {
+    visibility: visible;
+    text-decoration: none;
+  }
+}
+
+
+
+/**
  * Comments
  */
 .comment-form-container {

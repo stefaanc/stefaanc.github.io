@@ -1,9 +1,12 @@
 ---
 layout: post
+tag: general
+
 title: "Notes On Implementing Comments"
 description: "I added the possibility to leave comments to my posts on my jekyll site on Github Pages using Staticman.  In this post I explain what I did and where I got my information from, and I provide some notes and gotchas based on my experience."
-tag: general
+
 date: 2020-03-01 20:23:41 +0000
+toc: true
 comments: true
 ---
 
@@ -102,7 +105,7 @@ The main issue with this:
 
 <br>
 
-### Disabling The Default "Submit" Behaviour When Pressing "Enter"
+### Disabling Default "Submit" Behaviour When Pressing "Enter"
 
 During testing, I kept pressing `Enter` after filling an input-field.  This triggers an unwanted `Submit`-action, so wanted to disable this.  I based [my solution](https://github.com/stefaanc/stefaanc.github.io/blob/master/assets/staticman.js#L493) on [a stackoverflow comment from `6ft Dan`](https://stackoverflow.com/questions/1009808/enter-key-press-behaves-like-a-tab-in-javascript).
 

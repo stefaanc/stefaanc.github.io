@@ -1,9 +1,12 @@
 ---
 layout: post
+tags: [ terraform-provider ]
+
 title: "Extending The Terraform Resource Lifecycle"
 description: "I recently started working on Terraform Provider plugins.  In this post I'm showing how to implement a couple of extensions to the Terraform resource lifecycle."
-tags: [ terraform-provider ]
+
 date: 2020-02-19 12:41:55 +0000
+toc: true
 comments: true
 ---
 
