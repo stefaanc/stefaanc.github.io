@@ -16,6 +16,7 @@ layout: default
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
+
     {%- if page.toc == true -%}
       {%- if page.comments != true -%}
         <div class="toc">
@@ -38,9 +39,26 @@ layout: default
 
     {% include anchor_headings.html html=content h_max=4 anchorBody="&nbsp;&#128279;&nbsp;" anchorClass="anchor-heading" anchorTitle="Permalink to '%heading%'" %}
 
+    {% if site.related_posts.size >= 1 %}
+      <hr>
+      <div>
+        <h3 id="related-posts">Related Posts
+          <a href="#related-posts" class="anchor-heading" title="Permalink to 'Related Posts'">&nbsp;&#128279;&nbsp;</a>
+        </h3>
+        <ul>
+        {% for related_post in site.related_posts limit: 5 %}
+          <li><a href="{{ related_post.url }}">{{ related_post.title }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <p><br></p>
+    {% endif %}
+
     {%- if page.comments == true -%}
+      <hr>
       {%- include staticman_comments.html -%}
     {%- endif -%}
+
   </div>
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>

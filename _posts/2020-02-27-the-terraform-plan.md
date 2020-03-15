@@ -1,6 +1,6 @@
 ---
 layout: post
-tags: [ terraform, terraform-provider ]
+tags: terraform terraform-provider
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "The Terraform Plan"
@@ -243,13 +243,3 @@ To run the provider:
     2. run `terraform destroy`
 
 <br/>
-
----
-
-### Related Posts
-
-- [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
-
-<br/>
-
----

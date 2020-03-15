@@ -1,6 +1,6 @@
 ---
 layout: post
-tags: [ terraform-provider ]
+tags: terraform-provider
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "Extending The Terraform Resource Lifecycle"
@@ -1120,14 +1120,3 @@ To run the provider:
     2. run `terraform destroy`
 
 <br/>
-
----
-
-### Related Posts
-
-- [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
-- [Implementing A Terraform Provider]({% post_url 2020-02-17-implementing-a-terraform-provider %})
-
-<br/>
-
----

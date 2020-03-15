@@ -1,6 +1,6 @@
 ---
 layout: post
-tags: [ terraform, terraform-provider ]
+tags: terraform terraform-provider
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "The Terraform Resource Lifecycle"
@@ -179,14 +179,3 @@ Terraform will first refresh its state-file, so it uses the provider's `Exists`-
 Terraform will then apply the terraform configuration, and will use the provider's `Create`-method to create the resource.  The `Create`-method is typically implemented to return the output of the provider's `Read`-method, and the `Read`-method updates the new Terraform state-file.  This will get infrastructure, Terraform state and Terraform configuration in-line with each other.  
 
 <br/>
-
----
-
-### Related Posts
-
-- [Implementing A Terraform Provider]({% post_url 2020-02-17-implementing-a-terraform-provider %})
-- [Extending The Terraform Resource Lifecycle]({% post_url 2020-02-19-extending-the-terraform-resource-lifecycle %})
-
-<br/>
-
----

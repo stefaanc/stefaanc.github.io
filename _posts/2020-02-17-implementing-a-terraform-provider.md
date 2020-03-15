@@ -1,6 +1,6 @@
 ---
 layout: post
-tags: [ terraform-provider ]
+tags: terraform-provider
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "Implementing A Terraform Provider"
@@ -513,14 +513,7 @@ To run the provider:
 
 ---
 
-### Related Posts
-
-- [The Terraform Resource Lifecycle]({% post_url 2020-02-15-the-terraform-resource-lifecycle %})
-- [Extending The Terraform Resource Lifecycle]({% post_url 2020-02-19-extending-the-terraform-resource-lifecycle %})
-
-<br/>
-
----
-
 EDIT 18-02-2020: code-corrections + added [Building & Running](#building--running) section  
 EDIT 19-02-2020: extended the infrastructure-API in [the `abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip)  
+
+<br>

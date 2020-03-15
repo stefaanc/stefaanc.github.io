@@ -9,7 +9,7 @@ layout: default
   </header>
 
   <div class="post-content">
-    {{ content }}
+
     {%- if site.posts.size > 0 -%}
       <div class="toc">
         <h4>On this page</h4>
@@ -23,6 +23,9 @@ layout: default
       </div>
       <p><br></p>
     {%- endif -%}
+
+    {{ content }}
+
   </div>
 
   {%- if site.posts.size > 0 -%}
@@ -45,6 +48,7 @@ layout: default
       </ul>
     {%- endfor -%}
     <hr>
+    <p><br></p>
   {%- endif -%}
 
 </article>

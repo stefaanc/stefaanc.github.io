@@ -21,6 +21,9 @@ header_pages:
 
 show_excerpts: false
 
+jekyll-archives:
+  enabled: all
+
 # Build settings
 markdown: kramdown
 theme: minima
@@ -28,6 +31,8 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll/tagging
+  - jekyll-tagging-related_posts
   - jemoji                                                                   # <<<<<
 
 # Exclude from processing.
