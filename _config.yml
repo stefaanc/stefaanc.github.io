@@ -2,8 +2,8 @@
 title: The Dungeons
 ### description: >-
 ###   Some stuff.
-###url: "https://stefaanc.github.io"                                            # <<<<<
-url: "localhost:4000"                                                           # >>>>>
+url: "https://stefaanc.github.io"                                            # <<<<<
+###url: "localhost:4000"                                                           # >>>>>
 baseurl: "/"
 
 author: Stefaan Coussement
@@ -33,7 +33,7 @@ plugins:
   - jekyll-sitemap
   - jekyll/tagging
   - jekyll-tagging-related_posts
-###  - jemoji                                                                   # <<<<<
+  - jemoji                                                                   # <<<<<
 
 # Exclude from processing.
 exclude:
