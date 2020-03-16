@@ -124,6 +124,10 @@ a {
   }
 }
 
+a[href$="#0"] {
+  color: red;
+}
+
 
 /**
  * Blockquotes

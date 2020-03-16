@@ -6,6 +6,7 @@
     data-email       = "{{ include.email }}"
     data-website     = "{{ include.website }}"
     data-profanity   = "{{ include.profanity }}"
+    data-profanity   = "{{ include.xss }}"
     data-timestamp   = "{{ include.timestamp }}"
     data-uid         = "{{ include.uid }}"
 >
@@ -57,6 +58,6 @@
     {% endif %}
   </div>
   <div class="comment-body">
-    {{ include.message | markdownify }}
+    {{ include.message | strip_html | markdownify }}
   </div>
 </div>

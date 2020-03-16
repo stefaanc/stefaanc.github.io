@@ -19,9 +19,10 @@
     {% assign website     = comment.website %}
     {% assign message     = comment.message %}
     {% assign profanity   = comment.profanity %}
+    {% assign xss         = comment.xss %}
     {% assign timestamp   = comment._timestamp %}
     {% assign uid         = comment._id %}
-    {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity timestamp=timestamp uid=uid %}
+    {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity xss=xss timestamp=timestamp uid=uid %}
   {% endfor %}
 {% endif %}
 

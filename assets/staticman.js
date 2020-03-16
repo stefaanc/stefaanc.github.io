@@ -13,7 +13,7 @@
         var email;
         var website;
         var timestamp, date, months;
-        var message, profanity;
+        var message, original, filtered, profanity, html, xss;
 
         console.log("updating header for '#comment-" + index + "'");
 
@@ -57,22 +57,55 @@
                 }
             });
 
+        // reset xss-form field
+        if (index == "0") {
+            $(form).find("#comment-form-xss")
+                .val("");
+        }
+        $(comment)
+            .attr("data-xss", "");
+
+        // filter href protocols
+        message = $(comment).find(".comment-body").html();
+        html = message.replace(/href="(\s)*((?!http:|https:)[^"]*:)[^"]*"/igm, 'href="#0"');
+
+        if ( html != message ) {
+
+            console.log("xss warning");
+
+            // update comment
+            $(comment)
+            .find(".comment-body")
+                .html(html);
+
+            // update form field
+            if (index == "0") {
+                $(form).find("#comment-form-xss")
+                    .val("warning");
+            }
+
+            // update comment data
+            $(comment)
+                .attr("data-xss", "warning");
+        }
+
         // get data
         replyingTo = $(comment).attr("data-replying_to");
-        name = $(comment).attr("data-name");
-        avatar = $(comment).attr("data-avatar");
-        email = $(comment).attr("data-email");
-        website = $(comment).attr("data-website");
-        timestamp = $(comment).attr("data-timestamp");
-        message = $(comment).find(".comment-body").html();
-        profanity = $(comment).attr("data-profanity");
+        name       = $(comment).attr("data-name");
+        avatar     = $(comment).attr("data-avatar");
+        email      = $(comment).attr("data-email");
+        website    = $(comment).attr("data-website");
+        timestamp  = $(comment).attr("data-timestamp");
+        message    = $(comment).find(".comment-body").html();
+        profanity  = $(comment).attr("data-profanity");
+        xss        = $(comment).attr("data-xss");
 
         if ( message ) {
             message = message.trim();
         }
 
         // show or hide preview
-        if (index == "0") {
+        if ( index == "0" ) {
             if ( !name && !message ) {
                 $(form)
                 .find(".comment-form-preview-container")
@@ -183,7 +216,22 @@
             }
         }
 
-        if ( profanity ) {
+        // only for preview - check if html was stripped
+        if ( index == "0" ) {
+            original   = $(form).find("#comment-form-message").val();
+            filtered = $("<div/>").html(original).text();
+
+            if ( filtered != original ) {
+                xss = "warning"
+            }
+        }
+
+        if ( xss && ( index == "0" ) ) {
+            $(comment)
+            .find(".comment-avatar img")
+                .attr("src", "/assets/images/bomb.png");
+        }
+        else if ( profanity ) {
             $(comment)
             .find(".comment-avatar img")
                 .attr("src", "/assets/images/devil.png");
@@ -568,10 +616,13 @@
                 messageElement = $(form).find("#comment-form-message");
                 message = $(messageElement).val();
 
+                // strip html
+                var filtered_message = $("<div/>").html(message).text();
+
                 // update message
                 converter = new showdown.Converter();
                 converter.setFlavor('github');
-                html = converter.makeHtml(message);
+                html = converter.makeHtml(filtered_message);
 
                 $(comment)
                 .find(".comment-body")

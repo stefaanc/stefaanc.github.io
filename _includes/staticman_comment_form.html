@@ -6,6 +6,7 @@
     <input name="options[reCaptcha][secret]" type="hidden" value="{{ site.reCaptcha.secret }}">
     <input id="comment-form-replying-to" name="fields[replying_to]" type="hidden" value="">
     <input id="comment-form-profanity" name="fields[profanity]" type="hidden" value="">
+    <input id="comment-form-xss" name="fields[xss]" type="hidden" value="">
 
     <div class="comment-form-body">
 
@@ -59,7 +60,7 @@
       <fieldset class="comment-form-message required">
         <div class="comment-form-tooltip">&#128712;
           <span class="comment-form-tooltip-text">
-            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>,<br>and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>.<br><br>Remark that the preview may show slightly different formatting because we use a different Markdown converter on the client-side, and there is no syntax highlighting at this moment.
+            You can use <a href="https://kramdown.gettalong.org/syntax.html">Markdown</a>, and <a href="https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers">syntax-highlighting</a>, but all HTML is stripped.  And only HTTP and HTTPS protocols<br> are allowed in links.<br><br>Remark that the preview may show slightly different formatting than the published comment, because we use a different Markdown converter on the client-side, and there is no syntax highlighting at this moment.
           </span>
         </div>
         <label for="comment-form-message">Message</label>

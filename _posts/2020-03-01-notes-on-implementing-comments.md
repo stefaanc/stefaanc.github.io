@@ -113,9 +113,66 @@ During testing, I kept pressing `Enter` after filling an input-field.  This trig
 
 <br>
 
+### Preventing Cross Site Scripting (XSS)
+
+Reading [Markdown's XXS Vulnerability](https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-%28and-how-to-mitigate-it%29), and a more extensive list of attack vectors on this [XSS filter evasion cheat sheet](https://owasp.org/www-community/xss-filter-evasion-cheatsheet), convinced me I need to do something about this.
+
+As a first line of protection, we don't allow any HTML in the markdown for comments.  We strip HTML in the markdown input.
+
+```markdown
+> hello <a name="n" href="javascript:alert('xss attack')">*you*</a>
+```
+
+without stripping:
+
+> hello <a name="n" href="javascript:alert('xss attack')">*you*</a>
+
+when stripped:
+
+> hello *you*
+
+<br>
+
+This also works for 
+
+```markdown
+> hello <a name="n" 
+> href="javascript:alert('xss attack')">*you*</a>
+```
+
+without stripping:
+
+> hello <a name="n" 
+> href="javascript:alert('xss attack')">*you*</a>
+
+when stripped:
+
+> hello href="javascript:alert('xss attack')">*you*
+
+<br>
+
+However, this doesn't prevent an attack when the vector is masked by markdown.  To prevent this, we have to filter out any `href` attribute for `<a/>` links with a protocol different from `https:` or `http:`.  We filter this in the markdown output.
+
+```markdown
+> hello [*you*](javascript:alert('xss%20attack'))
+```
+
+without stripping:
+
+> hello [*you*](javascript:alert('xss%20attack'))
+
+when stripped:
+
+> hello [*you*](javascript:alert('xss%20attack'))
+
+when filtered:
+
+> hello [*you*](#0)
+ 
+<br> 
+
 ### To Do
 
-- find an XSS filter
 - add client-side syntax-highlighting in comment-preview
 - support for mailgun or alternative
 
