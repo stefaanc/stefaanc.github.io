@@ -18,36 +18,40 @@ layout: default
   <div class="post-content e-content" itemprop="articleBody">
 
     {%- if page.toc == true -%}
-      {%- if page.comments != true -%}
-        <div class="toc">
-          <h4>In this post</h4>
-          {%- include toc.html html=content h_max=4 -%}
-        </div>
-      {%- else -%}
-        <div class="toc toc-with-comments">
-          <h4>In this post</h4>
-          {%- include toc.html html=content h_max=4 -%}
-          <ul>
+      <div class="toc">
+        <h4>In this post</h4>
+        {%- include toc.html html=content h_max=4 -%}
+        <ul>
+          {%- if site.categories[page.category].size > 1 -%}
+            <li>
+              <a href="#related-posts">Related Posts</a>
+            </li>
+          {%- endif -%}
+          {%- if page.comments == true -%}
             <li>
               <a href="#comments">Comments</a>
             </li>
-          </ul>
-        </div>
-      {%- endif -%}
+          {%- endif -%}
+        </ul>
+      </div>
       <p><br></p>
     {%- endif -%}
 
     {% include anchor_headings.html html=content h_max=4 anchorBody="&nbsp;&#128279;&nbsp;" anchorClass="anchor-heading" anchorTitle="Permalink to '%heading%'" %}
 
-    {% if site.related_posts.size >= 1 %}
+    {% if site.categories[page.category].size > 1 %}
+      <p><br></p>
       <hr>
       <div>
         <h3 id="related-posts">Related Posts
           <a href="#related-posts" class="anchor-heading" title="Permalink to 'Related Posts'">&nbsp;&#128279;&nbsp;</a>
         </h3>
         <ul>
-        {% for related_post in site.related_posts limit: 5 %}
-          <li><a href="{{ related_post.url }}">{{ related_post.title }}</a></li>
+        {% assign posts_by_date = site.categories[page.category] | reverse %}
+        {% for post in posts_by_date %}
+          {% if post.title != page.title %}
+             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
         {% endfor %}
         </ul>
       </div>
@@ -56,7 +60,12 @@ layout: default
     {%- if page.comments == true -%}
       <p><br></p>
       <hr>
-      {%- include staticman_comments.html -%}
+      <div>
+        <h3 id="comments">Comments
+          <a href="#comments" class="anchor-heading" title="Permalink to 'Comments'">&nbsp;&#128279;&nbsp;</a>
+        </h3>
+        {%- include staticman_comments.html -%}
+      </div>
     {%- endif -%}
 
   </div>

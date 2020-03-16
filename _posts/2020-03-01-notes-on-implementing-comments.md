@@ -1,6 +1,7 @@
 ---
 layout: post
-tag: general
+category: jekyll
+tags: [ jekyll ]
 image: "/assets/images/avatar.png"
 
 title: "Notes On Implementing Comments"
@@ -120,5 +121,3 @@ During testing, I kept pressing `Enter` after filling an input-field.  This trig
 
 So, this is it for now.  Still some stuff to do, as you can see.
 If you see something that I forgot about, please don't hesitate to leave me a comment.
-
-<br>

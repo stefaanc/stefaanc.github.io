@@ -13,6 +13,15 @@ github_username: stefaanc
 stackoverflow_username: "12905205"
 rss: rss subscribe
 
+staticman_url: https://staticman-stefaanc.herokuapp.com/v2/entry/stefaanc/stefaanc.github.io/master/comments
+
+reCaptcha:
+  siteKey: "6Lcx8t0UAAAAAOJnUmEkrL5vDBAki11b_b-nBEc6"
+  secret: "QLfPSml1HanvAWjaiD+EvRjDb90ie5LRFGdWGhe67okKQvIS0VHTYh9jjIdXKLZFxwR176ZsxTHVzTbVDfxGZ9b5ZdUjdzeYReZSPo4CVV85bUFVnFBM5VFfj/W1+tqV+O50PBbIqwEFVVIJ62k6N+WzbFqqlPsMaL2MGax1zbZCBz/w0MBHV6VbqtRkllG7DCnIYButf97ryVXzzIh9q2AiaTzHwoTyzRI7YtX4cLsPPNfATk0eifN41SSjCNql05CiMLMDid/rrA+zVZjkrj3/jWFwhTTp1UPWGw48jBuJFAqXwrfZxGFnhftpmQFHh1HArLsTautbtT4OMVP9e+KZd+HIvnVlU4pjqWwhRazrpV+WA1Btg68eaC5bv/VEnztrc4YyZ4WE6yzLS4/bmI/SU27SdZbLl+4HIjpgX+rR70TRUMHi5RDs8gHXiFmfMe9wEihNZqFFGRK/OvA9sgb7KK0s3f/kL+xgVNYaGg/2iWslGfuIiL2xxWetI2jW52w/fTv86xtg/mHejPxeEwYShLf2Kz76as/PBtVg8/v02SaLYMUV2+ljUf17tw6Q31qM18uc2VFqQNuO7zUuJmYZnps6Blewjs+xS6wJEDEKKQH6j1u8SKFItCDH4aSYj51tn6aHL/Dr+DCw5aCzRJeu/Wh0IhSPOZxP1cE0UhE="
+
+# Build settings
+theme: minima
+
 header_pages:
   - topics.md
   - projects.md
@@ -21,28 +30,16 @@ header_pages:
 
 show_excerpts: false
 
-jekyll-archives:
-  enabled: all
-
-# Build settings
-markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll/tagging
-  - jekyll-tagging-related_posts
   - jemoji                                                                   # <<<<<
+
+markdown: kramdown
 
 # Exclude from processing.
 exclude:
   - Gemfile
   - Gemfile.lock
   - serve.bat
-
-staticman_url: https://staticman-stefaanc.herokuapp.com/v2/entry/stefaanc/stefaanc.github.io/master/comments
-
-reCaptcha:
-  siteKey: "6Lcx8t0UAAAAAOJnUmEkrL5vDBAki11b_b-nBEc6"
-  secret: "QLfPSml1HanvAWjaiD+EvRjDb90ie5LRFGdWGhe67okKQvIS0VHTYh9jjIdXKLZFxwR176ZsxTHVzTbVDfxGZ9b5ZdUjdzeYReZSPo4CVV85bUFVnFBM5VFfj/W1+tqV+O50PBbIqwEFVVIJ62k6N+WzbFqqlPsMaL2MGax1zbZCBz/w0MBHV6VbqtRkllG7DCnIYButf97ryVXzzIh9q2AiaTzHwoTyzRI7YtX4cLsPPNfATk0eifN41SSjCNql05CiMLMDid/rrA+zVZjkrj3/jWFwhTTp1UPWGw48jBuJFAqXwrfZxGFnhftpmQFHh1HArLsTautbtT4OMVP9e+KZd+HIvnVlU4pjqWwhRazrpV+WA1Btg68eaC5bv/VEnztrc4YyZ4WE6yzLS4/bmI/SU27SdZbLl+4HIjpgX+rR70TRUMHi5RDs8gHXiFmfMe9wEihNZqFFGRK/OvA9sgb7KK0s3f/kL+xgVNYaGg/2iWslGfuIiL2xxWetI2jW52w/fTv86xtg/mHejPxeEwYShLf2Kz76as/PBtVg8/v02SaLYMUV2+ljUf17tw6Q31qM18uc2VFqQNuO7zUuJmYZnps6Blewjs+xS6wJEDEKKQH6j1u8SKFItCDH4aSYj51tn6aHL/Dr+DCw5aCzRJeu/Wh0IhSPOZxP1cE0UhE="

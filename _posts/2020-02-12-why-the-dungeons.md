@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: general
+tags: [ general ]
 image: "/assets/images/avatar.png"
 title: "Why \"The Dungeons\""
 date: 2020-02-12 09:28:32 +0000
@@ -21,5 +21,3 @@ So,
 if the customer goes to the right to the meeting rooms, put the software engineers in offices to the left.  
 if the customer goes up to meet the sales team, put the software engineers down... in **the dungeons**.
 but don't throw the key away, because that would be illegal.
- 
-<br>

@@ -1,6 +1,7 @@
 ---
 layout: post
-tags: terraform terraform-provider
+category: terraform-provider 
+tags: [ terraform, terraform-provider ]
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "The Terraform Resource Lifecycle"
@@ -29,13 +30,13 @@ The resource lifecycle is based on [the CRUD methods: Create, Read, Update and D
 
 The data-source lifecycle only requires the `Read`-method, since the infrastructure isn't updated.  I didn't explicitly check if it can also use the `Exists`-method, but I assume so.
 
-<br/>
+<br>
 
 ### The `Create`, `Read` & `Delete` Methods
 
 These are the basic provider-methods used by Terraform.  Which methods Terraform executes to refresh its state and to apply the user's configuration depends on the state of the infrastructure, the state stored in the Terraform state-file ( typically `terraform.tfstate`) and the Terraform configuration-files (`*.tf`).
 
-<br/>
+<br>
 
 resource                                                                     | &nbsp; | terraform refresh           | terraform apply
 :----------------------------------------------------------------------------|--------|:----------------------------|:---------------------
@@ -59,7 +60,7 @@ resource                                                                     | &
  &nbsp; &emsp; &emsp; &emsp; &emsp;          >> changed force-new attributes |      8 | Read (refresh state)        | Delete, Create, Read
  &nbsp; &emsp; &emsp; &emsp; &emsp;          >> changed common attributes    |      - | n.a.                        | n.a.
 
-<br/>
+<br>
 
 For instance, take line 3 in the previous table
   
@@ -72,7 +73,7 @@ Terraform will then apply the terraform configuration, and will use the provider
 > :information_source:  
 > Terraform will not use the `Read`-method after a `Create`-method by itself.  Instead, the `Create`-method has to call the `Read`-method (or implement its own read-function) before returning. 
 
-<br/>
+<br>
 
 For instance, take line 4 in the previous table
   
@@ -82,7 +83,7 @@ Terraform will not refresh its state-file because the resource is not known to T
 
 Terraform then try to apply the terraform configuration, and will use the provider's `Create`-method to create the resource.  The `Create`-method is typically implemented to throw an error when a resource already exists, so Terraform will not create anything in the infrastructure and will not update its state-file.
 
-<br/>
+<br>
 
 For instance, take line 8 in the previous table
 
@@ -95,13 +96,13 @@ Terraform will then apply the terraform configuration, and finds there are some 
 > :information_source:  
 > Because there is no `Update`-method, one **must** set  `ForceNew: true` for all attributes in the schema, except for the `Computed` attributes.  This forces Terraform to use `Delete` + `Create` instead of `Update`.
 
-<br/>
+<br>
 
 ### Adding The `Update` Method
 
 Forcing all resources to be deleted and re-created every time one of its attributes needs to be changed is not the most efficient way of working.  Hence let's add the `Update`-method to the Terraform Provider.  This means we don't need to add `ForceNew: true` to all non-`Computed` attributes anymore, we can now do this selectively, only for attributes that cannot be changed without re-creating the resource.
 
-<br/>
+<br>
 
 resource                                                                     | &nbsp; | terraform refresh           | terraform apply
 :----------------------------------------------------------------------------|--------|:----------------------------|:---------------------
@@ -125,7 +126,7 @@ resource                                                                     | &
  &nbsp; &emsp; &emsp; &emsp; &emsp;          >> changed force-new attributes |      8 | Read (refresh state)        | Delete, Create, Read
  &nbsp; &emsp; &emsp; &emsp; &emsp;          >> changed common attributes    |      9 | **Read (refresh state)**    | **Update, Read**
 
-<br/>
+<br>
 
 Let's have a look at what changed - take line 9 in the previous table
 
@@ -138,13 +139,13 @@ Terraform will then apply the terraform configuration, and finds there are some 
 > :information_source:  
 > Terraform will not use the `Read`-method after an `Update`-method by itself.  Instead, the `Update`-method has to call the `Read`-method (or implement its own read-function) before returning. 
 
-<br/>
+<br>
 
 ### Adding The `Exists` Method
 
 The `Read`-method can be a very expensive method.  A Terraform Provider may implement an `Exists`-method to avoid this in some use-cases.
 
-<br/>
+<br>
 
 resource                                                                     | &nbsp; | terraform refresh                       | terraform apply
 :----------------------------------------------------------------------------|--------|:----------------------------------------|:---------------------
@@ -168,7 +169,7 @@ resource                                                                     | &
  &nbsp; &emsp; &emsp; &emsp; &emsp;          >> changed force-new attributes |      8 | **Exists**, Read (refresh state)        | Delete, Create, Read
  &nbsp; &emsp; &emsp; &emsp; &emsp;          >> changed common attributes    |      9 | **Exists**, Read (refresh state)        | Update, Read
 
-<br/>
+<br>
 
 For instance, take line 3 in the previous table
   
@@ -177,5 +178,3 @@ A resource X* does not exist in the infrastructure.  However, it does exist in t
 Terraform will first refresh its state-file, so it uses the provider's `Exists`-method to find out if this resource exists in the infrastructure.  Since the resource doesn't exist in the infrastructure, Terraform will clear the resource from its state-file.  
 
 Terraform will then apply the terraform configuration, and will use the provider's `Create`-method to create the resource.  The `Create`-method is typically implemented to return the output of the provider's `Read`-method, and the `Read`-method updates the new Terraform state-file.  This will get infrastructure, Terraform state and Terraform configuration in-line with each other.  
-
-<br/>

@@ -268,6 +268,10 @@
   background-color: lighten($brand-color, 10%);
   color: #fff;
 
+  ul:first-of-type {
+    margin-bottom: 0;
+  }
+
   code {
     border: none;
     background-color: lighten($brand-color, 20%);
@@ -279,11 +283,6 @@
     &:visited {
       color: darken(#fff, 15%);
     }
-  }
-}
-.toc-with-comments {
-  ul:first-of-type {
-    margin-bottom: 0;
   }
 }
 

@@ -1,39 +1,29 @@
-<section id="comment-section" class="comments">
-
-  <header class="comments-header">
-    <h3 id="comments">Comments
-      <a href="#comments" class="anchor-heading" title="Permalink to 'Comments'">&nbsp;&#128279;&nbsp;</a>
-    </h3>
-  </header>
-
-  <div id="comment-form-container-0" class="comment-form-container">
-    {% include staticman_comment_form.html%}
-    <div id="comment-form-link-0" hidden>
-      <p class="comment-form-link" onclick="STATICMAN.moveForm('')" rel="nofollow">
-         <span class="comment-form-link-reply-symbol">&nbsp;&#11176;&nbsp;</span> Leave a comment
-      </p>
-    </div>
+<div id="comment-form-container-0" class="comment-form-container">
+  {% include staticman_comment_form.html%}
+  <div id="comment-form-link-0" hidden>
+    <p class="comment-form-link" onclick="STATICMAN.moveForm('')" rel="nofollow">
+       <span class="comment-form-link-reply-symbol">&nbsp;&#11176;&nbsp;</span> Leave a comment
+    </p>
   </div>
+</div>
 
-  {% if site.data.comments[page.slug] %}
-    {% assign comments = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == ''" %}
-    {% assign comments_by_date = comments | sort: "_timestamp" | reverse %}
-    {% for comment in comments_by_date %}
-      {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
-      {% assign replying_to = "" %}
-      {% assign name        = comment.name %}
-      {% assign avatar      = comment.avatar %}
-      {% assign email       = comment.email %}
-      {% assign website     = comment.website %}
-      {% assign message     = comment.message %}
-      {% assign profanity   = comment.profanity %}
-      {% assign timestamp   = comment._timestamp %}
-      {% assign uid         = comment._id %}
-      {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity timestamp=timestamp uid=uid %}
-    {% endfor %}
-  {% endif %}
-
-</section>
+{% if site.data.comments[page.slug] %}
+  {% assign comments = site.data.comments[page.slug] | where_exp: "item", "item.replying_to == ''" %}
+  {% assign comments_by_date = comments | sort: "_timestamp" | reverse %}
+  {% for comment in comments_by_date %}
+    {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
+    {% assign replying_to = "" %}
+    {% assign name        = comment.name %}
+    {% assign avatar      = comment.avatar %}
+    {% assign email       = comment.email %}
+    {% assign website     = comment.website %}
+    {% assign message     = comment.message %}
+    {% assign profanity   = comment.profanity %}
+    {% assign timestamp   = comment._timestamp %}
+    {% assign uid         = comment._id %}
+    {% include staticman_comments_item.html index=index replying_to=replying_to name=name avatar=avatar email=email website=website message=message profanity=profanity timestamp=timestamp uid=uid %}
+  {% endfor %}
+{% endif %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>

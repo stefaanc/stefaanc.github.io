@@ -1,6 +1,7 @@
 ---
 layout: post
-tags: terraform terraform-provider
+category: terraform-provider 
+tags: [ terraform, terraform-provider ]
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "The Terraform Plan"
@@ -36,7 +37,7 @@ A good place to find issues is the Terraform log file, look for `The following p
 A lot of the issues mentioned under this heading can be resolved, however some cannot.  For instance, when not specifying a value for an `Optional` attribute with a `Default`, you will get a message like `- .my_attribute: planned value cty.StringVal("default") does not match config value cty.NullVal(cty.String)`.
  
 
-<br/>
+<br>
 
 ### Attributes
 
@@ -61,7 +62,7 @@ A `Computed` attribute must not be specified in a Terraform configuration.  When
 
 To avoid an `Optional` attribute gets removed, we can make the attribute `Optional` & `Default`
  
-attribute                             | &nbsp; | Optional                        | Optional &<br/>Default                
+attribute                             | &nbsp; | Optional                        | Optional &<br>Default                
 :-------------------------------------|--------|:--------------------------------|:--------------------------------------
              - not in tf state        | &nbsp; |                           &nbsp;|                                 &nbsp; 
  &nbsp;         -- not in tf config   | 1      | null                            |**&thinsp;`+`&nbsp;default** 
@@ -76,7 +77,7 @@ attribute                             | &nbsp; | Optional                       
 
 Or we can make the attribute `Optional` & `Computed`.
 
-attribute                            | &nbsp; | Optional                        | Optional &<br/>Computed               | Computed          
+attribute                            | &nbsp; | Optional                        | Optional &<br>Computed               | Computed          
 :------------------------------------|--------|:--------------------------------|:--------------------------------------|:----------------------------------
              - not in tf state       | &nbsp; |                           &nbsp;|                                 &nbsp;|                             &nbsp; 
  &nbsp;         -- not in tf config  | 1      | null                            |**&thinsp;`+`&nbsp;(known after apply)** |&thinsp;`+`&nbsp;(known after apply)
@@ -89,7 +90,7 @@ attribute                            | &nbsp; | Optional                        
 
 Similar to `Optional` attributes, the value of an `Optional` & `Computed` attribute that is not configured will be known after the plan is applied - see line 1.  However, when this attribute already exists in the Terraform state - see line 3 - Terraform assumes its value will not change.  The Terraform Provider implementation can and should customize this when it expects this attribute's value will change after apply. 
 
-<br/>
+<br>
 
 ### Embedded Resources
 
@@ -144,7 +145,7 @@ Terraform doesn't support embedded `Optional` & `Default` resources yet.  There 
 
 To avoid an `Optional` resource gets removed, we can make the resource `Optional` & `Computed`.
 
-resource                             | &nbsp; | Optional                                             | Optional &<br/>Computed                 
+resource                             | &nbsp; | Optional                                             | Optional &<br>Computed                 
 :------------------------------------|--------|:-----------------------------------------------------|:----------------------------------------------------------
              - not in tf state       | &nbsp; |                                                &nbsp;|                                                     &nbsp;
  &nbsp;         -- not in tf config  | 1      | null                                                 |**&thinsp;`+`&nbsp;{&nbsp;`+`&nbsp;(known after apply) }** 
@@ -157,7 +158,7 @@ resource                             | &nbsp; | Optional                        
 
 By default, an `Optional` & `Computed` resource uses "block" config-mode, as shown above.  However, this can be changed to "attribute" config-mode by setting `ConfigMode: schema.SchemaConfigModeAttr,` in the resource's schema.  This will also slightly change the behaviour of `Optional` resource attributes.
 
-resource                             | &nbsp; | Optional &<br/>Computed<br/>using block config mode   | Optional &<br/>Computed<br/>using attribute config mode                 
+resource                             | &nbsp; | Optional &<br>Computed<br>using block config mode   | Optional &<br>Computed<br>using attribute config mode                 
 :------------------------------------|--------|:------------------------------------------------------|:---------------------------------------------------------------------------
              - not in tf state       | &nbsp; |                                                 &nbsp;|                                                                      &nbsp;
  &nbsp;         -- not in tf config  | 1      |&thinsp;`+`&nbsp;{&nbsp;`+`&nbsp;(known after apply) } |**&thinsp;`+`&nbsp;(known after apply)**
@@ -168,7 +169,7 @@ resource                             | &nbsp; | Optional &<br/>Computed<br/>usin
  &nbsp;&emsp;      > config == state | 4a     |&thinsp;` `&nbsp;{&nbsp;` `&nbsp;state }               |**&thinsp;` `&nbsp;[&nbsp;` `&nbsp;{&nbsp;` `&nbsp;state } ]**               
  &nbsp;&emsp;      > config != state | 4b     |&thinsp;`~`&nbsp;{&nbsp;`?`&nbsp;state -> config... }  |**&thinsp;`~`&nbsp;[&nbsp;`?`&nbsp;{&nbsp;`?`&nbsp;state -> config... } ]**  
 
-resource attribute                   | &nbsp; | Optional<br/>using block config mode | Optional<br/>using attribute config mode 
+resource attribute                   | &nbsp; | Optional<br>using block config mode | Optional<br>using attribute config mode 
 :------------------------------------|--------|:-------------------------------------|:-----------------------------------------
              - not in tf state       | &nbsp; |                                &nbsp;|                                    &nbsp; 
  &nbsp;         -- not in tf config  | 1      | null                                 |                                    &nbsp; 
@@ -193,7 +194,7 @@ This choice of config mode is particularly important when configuring `embedded_
 
 - When setting `ConfigMode: schema.SchemaConfigModeAttr,` in the resource's schema, and when changing the config to `embedded_resource = []`, Terraform will create an empty list of resource-blocks or change to an empty list of resource-blocks - see lines 2 & 1a or 4b & 3a.  
 
-<br/>
+<br>
 
 #### Notes On Config Mode
 
@@ -212,7 +213,7 @@ Some more info:
 - [Attributes as Blocks](https://www.terraform.io/docs/configuration/attr-as-blocks.html)
 - [Computed Resource Attributes](https://www.terraform.io/docs/extend/terraform-0.12-compatibility.html#computed-resource-attributes)
 
-<br/>
+<br>
 
 ### Trying It Out
 
@@ -241,5 +242,3 @@ To run the provider:
     2. run `terraform plan`
     2. run `terraform apply`
     2. run `terraform destroy`
-
-<br/>

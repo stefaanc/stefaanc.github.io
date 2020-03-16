@@ -1,6 +1,7 @@
 ---
 layout: post
-tags: terraform-provider
+category: terraform-provider 
+tags: [ terraform-provider ]
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "Extending The Terraform Resource Lifecycle"
@@ -15,7 +16,7 @@ I recently started working on Terraform Provider plugins, but there doesn't seem
 
 ![refresh-plan-apply.png](/assets/images/terraform-refresh-plan-apply-badge.png)
 
-<br/>
+<br>
 
 I discussed the general Terraform behaviour in my post ["The Terraform Resource Lifecycle"]({% post_url 2020-02-15-the-terraform-resource-lifecycle %}), and the implementation of the required methods in my post ["Implementing A Terraform Provider"]({% post_url 2020-02-17-implementing-a-terraform-provider %}). 
 
@@ -23,7 +24,7 @@ Terraform allows the users to customize the resource lifecycle using the [`lifec
 
 Terraform was developed to manage virtualized cloud resources.  However when I want to use Terraform for resources on a physical machine - for instance working with Hyper-V on my laptop or VMware ESXi on a server - then I need to be able to read and modify existing resources, and resources that cannot be created or deleted - for instance hardware resources like a NIC.  The current Terraform model isn't really coping well with this.  Terraform allows you to import resources, but that is to be done outside the Terraform configuration, manually or using a script.  That is why I add an `x_lifecycle`-block to some of my data-sources and resources.
 
-<br/>
+<br>
 
 ### Data-Sources
 
@@ -141,7 +142,7 @@ func dataSourceABCXYZ() *schema.Resource {
 > - We added the `"strings"` import.  This will be used by the data-source's `Read`-method
 > - We added the embedded `x_lifecycle`-resource.
 
-<br/>
+<br>
 
 The data-source's `Read`-method is typically implemented using the following pattern
 
@@ -242,7 +243,7 @@ func dataSourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
 >   - we add the existing data-source object to the Terraform state
 >   - we set the `Computed` attribute `exists` to `true` and return
 
-<br/>
+<br>
 
 ### Resources
 
@@ -393,7 +394,7 @@ func resourceABCXYZOriginal() *schema.Resource {
 > - We added the embedded `x_lifecycle`-resource.
 > - We added the embedded `original`-resource to save the imported state so it can be restored when the resource is deleted from the Terraform state.
 
-<br/>
+<br>
 
 The resource's `Create`-method is typically implemented using the following pattern
 
@@ -534,7 +535,7 @@ func resourceABCXYZDiff(d *schema.ResourceData, xyz *api.XYZ) bool {
 > - Else
 >   - we set the `Computed` attribute `imported` to `false` and return
 
-<br/>
+<br>
 
 The resource's `Delete`-method is typically implemented using the following pattern
 
@@ -624,7 +625,7 @@ func resourceABCXYZDelete(d *schema.ResourceData, m interface{}) error {
 > - Else
 >   - we delete the resource from the infrastructure
 
-<br/>
+<br>
 
 ### Persistent Resources
 
@@ -782,7 +783,7 @@ func resourceABCXYZOriginal() *schema.Resource {
 >   - We added the embedded `original`-resource.
 > - Remark that when the resource doesn't exist, it will try to find it on every terraform apply
 
-<br/>
+<br>
 
 The resource's `Create`-method is typically implemented using the following pattern
 
@@ -923,7 +924,7 @@ func resourceABCXYZDiff(d *schema.ResourceData, xyz *api.XYZ) bool {
 >     - we add the existing data-source object to the Terraform state
 >     - we set the `Computed` attribute `exists` to `true` and return
 
-<br/>
+<br>
 
 The resource's `Read`-method is typically implemented using the following pattern
 
@@ -1019,7 +1020,7 @@ func reourceABCXYZRead(d *schema.ResourceData, m interface{}) error {
 >     - we add the existing data-source object to the Terraform state
 >     - we set the `Computed` attribute `exists` to `true` and return
 
-<br/>
+<br>
 
 The resource's `Delete`-method is typically implemented using the following pattern
 
@@ -1086,7 +1087,7 @@ func resourceABCXYZDelete(d *schema.ResourceData, m interface{}) error {
 > - Identical to a non-persistent resource
 >   - we update the resource with its originally imported attribute-values in the infrastructure  
 
-<br/>
+<br>
 
 ### Building & Running It
 
@@ -1118,5 +1119,3 @@ To run the provider:
     2. run `terraform plan`
     2. run `terraform apply`
     2. run `terraform destroy`
-
-<br/>

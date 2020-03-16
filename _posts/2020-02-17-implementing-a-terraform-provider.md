@@ -1,6 +1,7 @@
 ---
 layout: post
-tags: terraform-provider
+category: terraform-provider 
+tags: [ terraform-provider ]
 image: "/assets/images/terraform-refresh-plan-apply-badge.png"
 
 title: "Implementing A Terraform Provider"
@@ -24,7 +25,7 @@ For more information about Terraform Provider plugins:
 - [GoDoc: Terraform Plugin SDK](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper)
 - [GitHub: /hashicorp/terraform-plugin-sdk](https://github.com/hashicorp/terraform-plugin-sdk)
 
-<br/>
+<br>
 
 Let's implement a Terraform provider `abc` with a data-source `abc_xyz` and a resource `abc_xyz`.  Most Terraform provider follow the same pattern.
  
@@ -60,7 +61,7 @@ func main() {
 }
 ```
 
-<br/>
+<br>
 
 ### The Provider
 
@@ -148,7 +149,7 @@ type ABCClient struct {
 }
 ```
 
-<br/>
+<br>
 
 ### Data-Sources
 
@@ -198,7 +199,7 @@ type XYZ struct {
 }
 ```
 
-<br/>
+<br>
 
 Terraform needs a `Read`-method.
 
@@ -244,7 +245,7 @@ func (c *ABCClient) ReadXYZ(name string) (xyz *XYZ, err error) {
 }
 ```
 
-<br/>
+<br>
 
 ### Resources
 
@@ -304,7 +305,7 @@ type XYZ struct {
 }
 ```
 
-<br/>
+<br>
 
 Terraform needs a `Create`-method.
 
@@ -347,7 +348,7 @@ func (c *ABCClient) CreateXYZ(name string, status string) error {
 }
 ```
 
-<br/>
+<br>
 
 Terraform needs a `Read`-method.
 
@@ -397,7 +398,7 @@ func (c *ABCClient) ReadXYZ(name string) (xyz *XYZ, err error) {
 }
 ```
 
-<br/>
+<br>
 
 Terraform needs an `Update`-method.
 
@@ -437,7 +438,7 @@ func (c *ABCClient) UpdateXYZ(name string, status string) error {
 }
 ```
 
-<br/>
+<br>
 
 Terraform needs a `Delete`-method.
 
@@ -476,7 +477,7 @@ func (c *ABCClient) DeleteXYZ(name string) error {
 }
 ```
 
-<br/>
+<br>
 
 ### Building & Running It
 
@@ -509,11 +510,9 @@ To run the provider:
     2. run `terraform apply`
     2. run `terraform destroy`
 
-<br/>
+<br>
 
 ---
 
 EDIT 18-02-2020: code-corrections + added [Building & Running](#building--running) section  
 EDIT 19-02-2020: extended the infrastructure-API in [the `abc` package](/assets/2020-02-17-implementing-a-terraform-provider/terraform-provider-abc.zip)  
-
-<br>
