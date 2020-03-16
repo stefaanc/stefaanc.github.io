@@ -1,0 +1,13 @@
+_id: 1d5bc0e0-6792-11ea-8cfc-c172199ceb15
+_parent: >-
+  https://stefaanc.github.io/jekyll/2020/03/01/notes-on-implementing-comments.html
+replying_to: ''
+profanity: ''
+name: Stefaan Coussement
+website: 'https://stefaanc.github.io'
+avatar: gravatar
+email: 8446cbd132983c8a8917431925987bb3
+password: ''
+message: "### Trying another XSS attack\r\n\r\nhello [*you*](javascript:alert('xss%20attack'))"
+date: '2020-03-16T14:26:24.734Z'
+_timestamp: 1584368784734
