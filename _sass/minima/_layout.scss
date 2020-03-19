@@ -358,7 +358,9 @@ h1, h2, h3, h4 {
   width: 100%;
 }
 #comment-form-message {
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} "Lucida Console", Monaco, monospace;
+  font: $base-font-weight 14px/#{$base-line-height} "Lucida Console", Monaco, monospace;
+  overflow: scroll;
+  white-space: pre;
 }
 
 .comment-form-reset, .comment-form-submit, .comment-form-cancel {

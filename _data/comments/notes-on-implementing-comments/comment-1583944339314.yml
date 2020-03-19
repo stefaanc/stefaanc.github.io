@@ -73,8 +73,8 @@ message: |+
 
   #### `tasklists`
 
-  - [x] This task is done
-  - [ ] This is still pending
+  [x] This task is done  
+  [ ] This is still pending
 
   #### `ghMentions`
 

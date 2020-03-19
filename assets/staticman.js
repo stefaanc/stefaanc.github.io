@@ -67,7 +67,7 @@
 
         // filter href protocols
         message = $(comment).find(".comment-body").html();
-        html = message.replace(/href="(\s)*((?!http:|https:)[^"]*:)[^"]*"/igm, 'href="#0"');
+        html = message.replace(/<a[^>]*href="(\s)*((?!http:|https:)[^\s:]*:)[^"]*"/igm, 'href="#0"');
 
         if ( html != message ) {
 
@@ -87,6 +87,13 @@
             // update comment data
             $(comment)
                 .attr("data-xss", "warning");
+
+            if (index == "0") {
+                // allow some time to render preview before alerting
+                setTimeout(function() {
+                    alert("Only HTTP and HTTPS protocols are allowed in links");
+                }, 1000);
+            }
         }
 
         // get data
@@ -222,6 +229,8 @@
             filtered = $("<div/>").html(original).text();
 
             if ( filtered != original ) {
+                // setting the xss variable to display right avatar
+                // no update of data or form-field
                 xss = "warning"
             }
         }
@@ -377,6 +386,12 @@
         // validate spam detection field
         if ( $(formElement).find("#comment-form-password").val() ) {
             alert("Password must not be filled out");
+            return false;
+        }
+
+        // validate website protocol
+        if ( $(formElement).find("#comment-form-website").val().match(/^(\s)*((?!http:|https:)[^\s:]*:)/i) ) {
+            alert("Only HTTP and HTTPS protocols are allowed in the website-field");
             return false;
         }
 
@@ -589,16 +604,22 @@
                 websiteElement = $(form).find("#comment-form-website");
                 website = $(websiteElement).val();
 
-                // update data
-                $(comment)
-                    .attr("data-website", website);
-
-                if ( $(websiteElement).data("dontUpdateCommentHeader") ) {
-                    $(websiteElement)
-                        .removeData("dontUpdateCommentHeader");
+                // check website protocol
+                if ( website.match(/^(\s)*((?!http:|https:)[^\s:]*:)/i) ) {
+                    alert("Only HTTP and HTTPS protocols are allowed in the website-field");
                 }
                 else {
-                    updateComment("0");
+                    // update data
+                    $(comment)
+                        .attr("data-website", website);
+
+                    if ( $(websiteElement).data("dontUpdateCommentHeader") ) {
+                        $(websiteElement)
+                            .removeData("dontUpdateCommentHeader");
+                    }
+                    else {
+                        updateComment("0");
+                    }
                 }
             },
 
@@ -606,7 +627,7 @@
 
             message: function () {
                 var comment;
-                var messageElement, message, converter, html;
+                var messageElement, message, stripped, converter, html;
 
                 console.log("comment-form message changed");
 
@@ -617,11 +638,11 @@
                 message = $(messageElement).val();
 
                 // strip html
-                var filtered_message = $("<div/>").html(message).text();
+                stripped = message.replace(/<[^>]*>/igm, '');
 
                 // update message
                 converter = new showdown.Converter();
-                html = converter.makeHtml(filtered_message);
+                html = converter.makeHtml(stripped);
 
                 $(comment)
                 .find(".comment-body")
@@ -633,6 +654,13 @@
                 }
                 else {
                     updateComment("0");
+                }
+
+                if ( stripped != message ) {
+                    // allow some time to render preview before alerting
+                    setTimeout(function() {
+                        alert("HTML was stripped");
+                    }, 1000);
                 }
             }
         },

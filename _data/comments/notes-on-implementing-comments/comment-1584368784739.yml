@@ -8,6 +8,16 @@ website: 'https://stefaanc.github.io'
 avatar: gravatar
 email: 8446cbd132983c8a8917431925987bb3
 password: ''
-message: "### Trying another XSS attack\r\n\r\n> hello [*you*](javascript:alert('xss%20attack'))"
+message: |+
+  ### Trying another XSS attack
+
+  > hello [*you*](javascript:alert('xss-attack'))
+
+  > hello [*you*](https://stefaanc.github.io"onclick="javascript:alert('xss-attack'))
+
+  > ![boom](/assets/images/bomb.png"onclick="alert('xss-attack'))
+
+  > ![boom"onclick="alert('xss-attack')](/assets/images/bomb.png)
+
 date: '2020-03-16T14:26:24.734Z'
 _timestamp: 1584368784734

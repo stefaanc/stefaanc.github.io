@@ -201,8 +201,8 @@ some code here
 
 #### `tasklists`
 
-- [x] This task is done
-- [ ] This is still pending
+[x] This task is done  
+[ ] This is still pending
 
 #### `ghMentions`
 
@@ -257,7 +257,58 @@ During testing, I kept pressing `Enter` after filling an input-field.  This trig
 
 Reading [Markdown's XXS Vulnerability](https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-%28and-how-to-mitigate-it%29), and a more extensive list of attack vectors on this [XSS filter evasion cheat sheet](https://owasp.org/www-community/xss-filter-evasion-cheatsheet), convinced me I need to do something about this.
 
-As a first line of protection, we don't allow any HTML in the markdown for comments.  We strip HTML in the markdown input, using the Liquid `strip_html` filter.
+There are three cases to consider
+- form fields that are placed in HTML attributes: the `name`- and `website`-fields.
+- form fields that are supporting HTML in Markdown: the `message`-field.
+- form fields that are supporting Markdown links and images: the `message`-field.
+
+<br>
+
+#### HTML Attributes
+
+A first class of XSS vectors is the use of malicious `href`-attributes in `<a>`-elements.
+
+Setting a comment's `website`-field to `javascript:alert('xss-attack')`, this was expanded to
+
+```html
+<a href="javascript:alert('xss-attack')" title="Link to author's website">Stefaan Coussement</a>
+```
+
+Clicking on the <a href="javascript:alert('xss-attack')" title="Link to author's website">link</a> executes the event-handler.
+
+To avoid this, the `website`-field only allows `http:` and `https:` protocols.  We are using this regexp to reject this field's value: `/^(\s)*((?!http:|https:)[^\s:]*:)/i`
+
+<br>
+
+Another class of XSS vectors is the injection of a malicious event-handler in an HTML element.  I was able to get this to work in the `data-name`- and `data-website`-attributes in the `<div>`-element that surrounds a comment.
+
+Setting a comment's `name`-field to `Stefaan Coussement"onclick="javascript:alert('xss-attack')`, this was expanded to
+
+```html
+<div id="comment-5" class="comment"
+    data-index="5"
+    data-replying_to
+    data-name="Stefaan Coussement"
+    onclick="javascript:alert('xss-attack')"
+    data-avatar
+    data-email
+    data-website
+    data-profanity
+    data-xss
+    data-timestamp="1583945233418"
+    data-uid="f51c50a0-63b7-11ea-81d2-4b36a47afbac"
+>
+```
+
+Clicking on the element executes the event-handler.
+
+To avoid this, we use Liquid's `escape_once` filter on the `name`- and `website`-fields.  This escapes the `"` character and thus avoids injecting an unwanted event-handler.  We did use `escape_once` instead of `escape` to avoid double-escaping the escaped characters that a user may put in the field.  Remark that I did also try the `url_escape` and `url_encode` filters on the `website`-field but these are not good for this use-case.
+
+<br>
+
+#### HTML In Markdown
+
+To avoid the injection of malicious HTML, we don't allow any HTML in the markdown for comments.  We strip HTML in the markdown input, using the Liquid `strip_html` filter.
 
 ```markdown
 > hello <a name="n" href="javascript:alert('xss attack')">*you*</a>
@@ -298,7 +349,7 @@ when stripped:
 
 <br>
 
-The problem with this method of stripping is that when using a `<` and a `>` further down in the text, everything between these two characters will be stripped
+The problem with this method of stripping is that when using a `<` and a `>` further down in the text, everything between these two characters will be stripped.  Liquid's `strip_html` filter is rather primitive in such cases.
 
 ```markdown
 > 2 < 3  
@@ -325,19 +376,30 @@ when stripped:
 
 <br>
 
-However, all this doesn't prevent an attack when the vector is masked by a markdown link or image.  You can find more information in [this blog](https://medium.com/taptuit/exploiting-xss-via-markdown-72a61e774bf8).  
+For me, the main remaining problem is that it is impossible to use `<br>` in the markdown text of comments, something I do quite a lot 
 
-The first type of XSS attack is using the Markdown links.  To prevent this type of attack, we have to filter out any `href` attribute for `<a/>` links with a protocol different from `https:` or `http:`.  We filter this in the markdown output.
+- to create some white-space between paragraphs.
+- to force a line-break (I particularly like to use this in tables).
+
+Using `&nbsp;` instead of `<br>` does seem to do the job of creating white-space between paragraphs, and a double space at the end of a line does force a line-break in some cases.  However, I didn't find a way of forcing a new-line in tables (yet);
+
+<br>
+
+#### Markdown Links & Images
+
+A more sophisticated attack is to use malicious [links or event-handlers](#html-attributes) injected using Markdown links & images.  You can find more information in [this blog](https://medium.com/taptuit/exploiting-xss-via-markdown-72a61e774bf8).  
+
+The first type of XSS attack is using the Markdown links.  To prevent this type of attack, we have to filter out any `href` attribute for `<a>` links with a protocol different from `https:` or `http:`.  We filter this in the markdown output.  We are using this regexp to reject the `href` of a link: `/<a[^>]*href="(\s)*((?!http:|https:)[^\s:]*:)[^"]*"/igm`
 
 ```markdown
-> hello [*you*](javascript:alert('xss%20attack'))
+> hello [*you*](javascript:alert('xss-attack'))
 ```
 
-without stripping:
+without stripping HTML:
 
 > hello [*you*](javascript:alert('xss%20attack'))
 
-when stripped:
+when stripping HTML:
 
 > hello [*you*](javascript:alert('xss%20attack'))
 
@@ -347,14 +409,16 @@ when filtered:
 
 <br>
 
-The second type of XSS attack is exploiting events on Markdown images.  To prevent this type of attack we have to filter out any events on images and links.
+The second type of XSS attack is exploiting event-handlers on Markdown links and images.  This doesn't seem to be a problem with the HTML generated by `kramdown` on the server-side, since `"`-characters are escaped in the `href`-, `src`- and `alt`-attributes of the generated `<a>`- and `<img>`-elements.  However, this is a problem with the `showdown` converter used on the client-side, since it only seems to escape the text for the `alt`-attribute.  But since this is only used in the comment-preview, this would only be a self-inflicted problem and thus no action is required.  
+
+Try the following in a comment
 
 ```markdown
-> ![bomb]("onerror="alert('xss-attack')) boom 
+> hello [*you*](https://stefaanc.github.io"onclick="javascript:alert('xss-attack'))
 
-> ![bomb](/assets/images/bomb.png"onload="alert('xss-attack')) boom 
+> ![boom](/assets/images/bomb.png"onclick="alert('xss-attack'))
 
-> [![bomb]() boom ](#0"onerror="alert('xss-attack')
+> ![boom"onclick="alert('xss-attack')](/assets/images/bomb.png) 
 ```
  
 <br> 
