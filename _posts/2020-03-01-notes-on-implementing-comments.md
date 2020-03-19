@@ -101,9 +101,149 @@ I added the possibility to preview the comment before submitting.  This automati
 
 The main issue with this:
 
+- Find an md5-encoder for the email address.  We need md5 when requesting a gravatar or libravatar.  I chose [the jQuery-MD5 plug-in](https://github.com/placemarker/jQuery-MD5).
+
 - Find a suitable client-side Markdown to HTML converter.  I chose [showdown.js](https://github.com/showdownjs/showdown).  This may render slightly different HTML than the server-side `kramdown`.
 
-- Find an md5-encoder for the email address.  We need md5 when requesting a gravatar.  I chose [the jQuery-MD5 plug-in](https://github.com/placemarker/jQuery-MD5).
+- Configure [showdown.js](https://github.com/showdownjs/showdown/wiki/Showdown-options) to produce HTML that is as close as possible to `kramdown`.  Remark that in the following, the defaults are for github flavored showdown.
+
+Showdown-Option                        | Default                  | Change
+---------------------------------------|:------------------------:|:-----:
+`omitExtraWLInCodeBlocks`              | true                     |          &nbsp; 
+`noHeaderId`                           | false                    | true
+`ghCompatibleHeaderId`                 | true                     |          &nbsp; 
+`prefixHeaderId`                       | &nbsp;                   |          &nbsp;
+`headerLevelStart`                     | 1                        |          &nbsp;
+`parseImgDimensions`                   | false                    |          &nbsp;
+`simplifiedAutoLink`                   | true                     | !!! false !!!
+`excludeTrailingPuntuationFromURLs`    | false                    |          &nbsp;
+`literalMidWordUnderscores`            | true                     |          &nbsp;
+`strikethrough`                        | true                     |          &nbsp;
+`tables`                               | true                     |          &nbsp;
+`tableHeaderId`                        | true                     | false
+`ghCodeBlocks`                         | true                     |          &nbsp;
+`tasklists`                            | true                     |          &nbsp;
+`ghMentions`                           | true                     | !!! false !!!
+`ghMentionsLink`                       | `https://github.com/{u}` |          &nbsp;
+`smoothLivePreview`                    | false                    |          &nbsp;
+`smartIndentationFix`                  | false                    |          &nbsp;
+`disableForced4SpacesIndentedSublists` | true                     |          &nbsp;
+`simpleLineBreaks`                     | true                     | !!! false !!!
+`requireSpaceBeforeHeadingText`        | false                    |          &nbsp;
+`encodeEmails`                         | true                     |          &nbsp;
+
+We used the following markdown in a comment and in preview to compare the two converters (remark that you'll need to remove the spaces for the fenced block to work).
+
+```markdown
+### Comparing Showdown & Markdown
+
+see my post [Notes On Implementing Comments](/jekyll/2020/03/01/notes-on-implementing-comments.html#a-comment-preview)
+
+#### `omitExtraWLInCodeBlocks`
+
+`var foo = 'bar';`
+
+#### `noHeaderId`
+
+##### This is a header
+
+#### `ghCompatibleHeaderId`
+
+##### This is a header with @#$%
+
+#### `prefixHeaderId`
+
+##### This is a header
+
+#### `headerLevelStart`
+
+##### This is a header
+
+#### `parseImgDimensions`
+
+n.a. (this crashes Jekyll site generation)
+
+#### `simplifiedAutoLink`
+
+some text www.google.com
+
+#### `excludeTrailingPuntuationFromURLs`
+
+check this link www.google.com.
+
+#### `literalMidWordUnderscores`
+
+some text with__underscores__in middle
+
+#### `strikethrough`
+
+~~strikethrough~~
+
+#### `tables`
+
+| h1    |    h2   |      h3 |
+|:------|:-------:|--------:|
+| 100   | [a][1]  | ![b][2] |
+| *foo* | **bar** | ~~baz~~ |
+
+#### `tableHeaderId`
+
+| h1    |    h2   |      h3 |
+|:------|:-------:|--------:|
+| 100   | [a][1]  | ![b][2] |
+| *foo* | **bar** | ~~baz~~ |
+
+#### `ghCodeBlocks`
+
+` ` ` (delete spaces)
+some code here
+` ` ` (delete spaces)
+
+#### `tasklists`
+
+- [x] This task is done
+- [ ] This is still pending
+
+#### `ghMentions`
+
+hello there @tivie
+
+#### `ghMentionsLink`
+
+hello there @tivie
+
+#### `smoothLivePreview`
+
+n.a. (we don't use preview feature)
+
+#### `smartIndentationFix`
+
+?
+
+#### `disableForced4SpacesIndentedSublists`
+
+- one
+  - two
+
+...
+
+- one
+    - two
+
+#### `simpleLineBreaks`
+
+a line
+wrapped in two
+
+#### `requireSpaceBeforeHeadingText`
+
+#####header
+
+#### `encodeEmails`
+
+n.a. (this would be stripped because it looks like HTML)
+
+```
 
 <br>
 
@@ -117,7 +257,7 @@ During testing, I kept pressing `Enter` after filling an input-field.  This trig
 
 Reading [Markdown's XXS Vulnerability](https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-%28and-how-to-mitigate-it%29), and a more extensive list of attack vectors on this [XSS filter evasion cheat sheet](https://owasp.org/www-community/xss-filter-evasion-cheatsheet), convinced me I need to do something about this.
 
-As a first line of protection, we don't allow any HTML in the markdown for comments.  We strip HTML in the markdown input.
+As a first line of protection, we don't allow any HTML in the markdown for comments.  We strip HTML in the markdown input, using the Liquid `strip_html` filter.
 
 ```markdown
 > hello <a name="n" href="javascript:alert('xss attack')">*you*</a>
@@ -133,17 +273,24 @@ when stripped:
 
 <br>
 
-This also works for 
+This also works when trying to cheat the system by nesting HTML
+
+```markdown
+> hello <<x>a name="n" href="javascript:alert('xss attack')">*you*<<x>/a>
+```
+
+when stripped:
+
+> hello a name="n" href="javascript:alert('xss attack')">*you*/a>
+
+<br>
+
+And this also works when trying to cheat the system by combining Markdown and HTML 
 
 ```markdown
 > hello <a name="n" 
 > href="javascript:alert('xss attack')">*you*</a>
 ```
-
-without stripping:
-
-> hello <a name="n" 
-> href="javascript:alert('xss attack')">*you*</a>
 
 when stripped:
 
@@ -151,7 +298,36 @@ when stripped:
 
 <br>
 
-However, this doesn't prevent an attack when the vector is masked by markdown.  To prevent this, we have to filter out any `href` attribute for `<a/>` links with a protocol different from `https:` or `http:`.  We filter this in the markdown output.
+The problem with this method of stripping is that when using a `<` and a `>` further down in the text, everything between these two characters will be stripped
+
+```markdown
+> 2 < 3  
+> 5 > 4  
+```
+
+when stripped:
+
+> 2 5 > 4
+
+<br>
+
+This can be avoided by encoding `<` using `&lt;`
+
+```markdown
+> 2 &lt; 3  
+> 5 > 4  
+```
+
+when stripped:
+
+> 2 < 3  
+> 5 > 4  
+
+<br>
+
+However, all this doesn't prevent an attack when the vector is masked by a markdown link or image.  You can find more information in [this blog](https://medium.com/taptuit/exploiting-xss-via-markdown-72a61e774bf8).  
+
+The first type of XSS attack is using the Markdown links.  To prevent this type of attack, we have to filter out any `href` attribute for `<a/>` links with a protocol different from `https:` or `http:`.  We filter this in the markdown output.
 
 ```markdown
 > hello [*you*](javascript:alert('xss%20attack'))
@@ -168,6 +344,18 @@ when stripped:
 when filtered:
 
 > hello [*you*](#0)
+
+<br>
+
+The second type of XSS attack is exploiting events on Markdown images.  To prevent this type of attack we have to filter out any events on images and links.
+
+```markdown
+> ![bomb]("onerror="alert('xss-attack')) boom 
+
+> ![bomb](/assets/images/bomb.png"onload="alert('xss-attack')) boom 
+
+> [![bomb]() boom ](#0"onerror="alert('xss-attack')
+```
  
 <br> 
 

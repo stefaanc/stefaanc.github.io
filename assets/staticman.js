@@ -5,7 +5,7 @@
 (function ($) {
     var form = $("#comment-form");
 
-    function updateCommentHeader(index) {
+    function updateComment(index) {
         var comment;
         var replyingTo;
         var name, initial, colour, userid;
@@ -470,8 +470,8 @@
                 .find("#comment-0")
                     .attr("data-replying_to", replyingTo)
 
-                // update preview header
-                updateCommentHeader("0");
+                // update preview
+                updateComment("0");
 
                 // show cancel button when the form is a reply, otherwise hide
                 if ( !replyingTo ) {
@@ -520,7 +520,7 @@
                         .removeData("dontUpdateCommentHeader");
                 }
                 else {
-                    updateCommentHeader("0");
+                    updateComment("0");
                 }
             },
 
@@ -545,7 +545,7 @@
                         .removeData("dontUpdateCommentHeader");
                 }
                 else {
-                    updateCommentHeader("0");
+                    updateComment("0");
                 }
             },
 
@@ -573,7 +573,7 @@
                         .removeData("dontUpdateCommentHeader");
                 }
                 else {
-                    updateCommentHeader("0");
+                    updateComment("0");
                 }
             },
 
@@ -598,7 +598,7 @@
                         .removeData("dontUpdateCommentHeader");
                 }
                 else {
-                    updateCommentHeader("0");
+                    updateComment("0");
                 }
             },
 
@@ -621,7 +621,6 @@
 
                 // update message
                 converter = new showdown.Converter();
-                converter.setFlavor('github');
                 html = converter.makeHtml(filtered_message);
 
                 $(comment)
@@ -633,7 +632,7 @@
                         .removeData("dontUpdateCommentHeader");
                 }
                 else {
-                    updateCommentHeader("0");
+                    updateComment("0");
                 }
             }
         },
@@ -698,6 +697,12 @@
 
     }
 
+    // showdown options
+    showdown.setFlavor('github');
+    showdown.setOption('simplifiedAutoLink', false);
+    showdown.setOption('ghMentions', false);
+    showdown.setOption('simpleLineBreaks', false);
+
     // initialize form
     $(form)
     .find("#comment-form-element")
@@ -733,7 +738,7 @@
         }
     });
 
-    // update comment headers
+    // update comments
     $(".comment")
         .each(function () {
             var replyingTo = $(this).attr("data-replying_to");
@@ -743,7 +748,7 @@
                 index = replyingTo + "-" + index;
             }
 
-            updateCommentHeader(index);
+            updateComment(index);
         });
 
     // trigger preview comment data updates when returning to page

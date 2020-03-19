@@ -13,10 +13,10 @@
   {% for comment in comments_by_date %}
     {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
     {% assign replying_to = "" %}
-    {% assign name        = comment.name %}
+    {% assign name        = comment.name | escape %}
     {% assign avatar      = comment.avatar %}
     {% assign email       = comment.email %}
-    {% assign website     = comment.website %}
+    {% assign website     = comment.website | escape %}
     {% assign message     = comment.message %}
     {% assign profanity   = comment.profanity %}
     {% assign xss         = comment.xss %}

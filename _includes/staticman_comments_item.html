@@ -16,10 +16,10 @@
     {% for reply in replies_by_date %}
       {% assign index       = forloop.length | plus: 1 | minus: forloop.index %}
       {% assign replying_to = reply.replying_to %}
-      {% assign name        = reply.name %}
+      {% assign name        = reply.name | escape %}
       {% assign avatar      = reply.avatar %}
       {% assign email       = reply.email %}
-      {% assign website     = reply.website %}
+      {% assign website     = reply.website | escape %}
       {% assign message     = reply.message %}
       {% assign profanity   = reply.profanity %}
       {% assign xss         = reply.xss %}

@@ -6,6 +6,115 @@ avatar: gravatar
 website: 'https://stefaanc.github.io'
 email: 8446cbd132983c8a8917431925987bb3
 password: ''
-message: "### Trying Markdown\r\n\r\nsome paragraph  \r\nanother paragraph\r\n\r\nand another paragraph\r\n\r\na list \r\n\r\n- item 1\r\n- item 2\r\n\r\na fenced block\r\n\r\n```javascript\r\nvar a = 1;\r\nvar b = \"one\";\r\n```\r\n\r\n> some block quote\r\n> very nicely indented\r\n\r\n<br>\r\n\r\nafter a break."
+message: |+
+  ### Comparing Showdown & Markdown
+
+  see my post [Notes On Implementing Comments](/jekyll/2020/03/01/notes-on-implementing-comments.html#a-comment-preview)
+
+  #### `omitExtraWLInCodeBlocks`
+
+  `var foo = 'bar';`
+
+  #### `noHeaderId`
+
+  ##### This is a header
+
+  #### `ghCompatibleHeaderId`
+
+  ##### This is a header with @#$%
+
+  #### `prefixHeaderId`
+
+  ##### This is a header
+
+  #### `headerLevelStart`
+
+  ##### This is a header
+
+  #### `parseImgDimensions`
+
+  n.a. (this crashes Jekyll site generation)
+
+  #### `simplifiedAutoLink`
+
+  some text www.google.com
+
+  #### `excludeTrailingPuntuationFromURLs`
+
+  check this link www.google.com.
+
+  #### `literalMidWordUnderscores`
+
+  some text with__underscores__in middle
+
+  #### `strikethrough`
+
+  ~~strikethrough~~
+
+  #### `tables`
+
+  | h1    |    h2   |      h3 |
+  |:------|:-------:|--------:|
+  | 100   | [a][1]  | ![b][2] |
+  | *foo* | **bar** | ~~baz~~ |
+
+  #### `tableHeaderId`
+
+  | h1    |    h2   |      h3 |
+  |:------|:-------:|--------:|
+  | 100   | [a][1]  | ![b][2] |
+  | *foo* | **bar** | ~~baz~~ |
+
+  #### `ghCodeBlocks`
+
+  ```
+  some code here
+  ```
+
+  #### `tasklists`
+
+  - [x] This task is done
+  - [ ] This is still pending
+
+  #### `ghMentions`
+
+  hello there @tivie
+
+  #### `ghMentionsLink`
+
+  hello there @tivie
+
+  #### `smoothLivePreview`
+
+  n.a. (we don't use preview feature)
+
+  #### `smartIndentationFix`
+
+  ?
+
+  #### `disableForced4SpacesIndentedSublists`
+
+  - one
+    - two
+
+  ...
+
+  - one
+      - two
+
+  #### `simpleLineBreaks`
+
+  a line
+  wrapped in two
+
+  #### `requireSpaceBeforeHeadingText`
+
+  #####header
+
+  #### `encodeEmails`
+
+  n.a. (this would be stripped because it looks like HTML)
+
+
 date: '2020-03-11T16:32:19.313Z'
 _timestamp: 1583944339313

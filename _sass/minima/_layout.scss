@@ -357,6 +357,9 @@ h1, h2, h3, h4 {
 .comment-form-message {
   width: 100%;
 }
+#comment-form-message {
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} "Lucida Console", Monaco, monospace;
+}
 
 .comment-form-reset, .comment-form-submit, .comment-form-cancel {
   float: right;

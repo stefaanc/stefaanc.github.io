@@ -6,6 +6,6 @@ avatar: gravatar
 website: 'https://stefaanc.github.io'
 email: 8446cbd132983c8a8917431925987bb3
 password: ''
-message: "### Trying XSS attack\r\n\r\n> hello <a name=\"n\"\r\n> href=\"javascript:alert('xss attack')\">*you*</a>"
+message: "### Trying XSS attack\r\n\r\n> hello <a name=\"n\" href=\"javascript:alert('xss attack')\">*you*</a>\r\n\r\n> hello <<a>a name=\"n\" href=\"javascript:alert('xss attack')\">*you*<</a>/a>\r\n\r\n> hello <a name=\"n\"\r\n> href=\"javascript:alert('xss attack')\">*you*</a>\r\n\r\n> 2 < 3  \r\n> 5 > 4\r\n\r\n> 2 &lt; 3  \r\n> 5 > 4"
 date: '2020-03-11T16:47:13.418Z'
 _timestamp: 1583945233418
