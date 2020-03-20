@@ -15,7 +15,7 @@
         var timestamp, date, months;
         var message, original, filtered, profanity, html, xss;
 
-        console.log("updating header for '#comment-" + index + "'");
+        console.log("updating '#comment-" + index + "'");
 
         comment = $(document).find("#comment-" + index);
 
@@ -67,7 +67,7 @@
 
         // filter href protocols
         message = $(comment).find(".comment-body").html();
-        html = message.replace(/<a[^>]*href="(\s)*((?!http:|https:)[^\s:]*:)[^"]*"/igm, 'href="#0"');
+        html = message.replace(/<a([^>]*)href="(\s)*((?!http:|https:)[^\s:]*:)[^"]*"/igm, '<a$1href="#0"');
 
         if ( html != message ) {
 
