@@ -9,6 +9,8 @@ password: ''
 message: |+
   ### Trying XSS attack
 
+  see [HTML In Markdown](/jekyll/2020/03/01/notes-on-implementing-comments.html#html-in-markdown)
+
   > hello <a name="n" href="javascript:alert('xss attack')">*you*</a>
 
   > hello <<a>a name="n" href="javascript:alert('xss attack')">*you*<</a>/a>

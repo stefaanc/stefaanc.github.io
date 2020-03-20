@@ -11,6 +11,8 @@ password: ''
 message: |+
   ### Trying another XSS attack
 
+  see [Markdown Links & Images](/jekyll/2020/03/01/notes-on-implementing-comments.html#markdown-links--images)
+
   > hello [*you*](javascript:alert('xss-attack'))
 
   > hello [*you*](https://stefaanc.github.io"onclick="javascript:alert('xss-attack'))

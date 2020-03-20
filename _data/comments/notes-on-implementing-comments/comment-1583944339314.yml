@@ -9,7 +9,7 @@ password: ''
 message: |+
   ### Comparing Showdown & Markdown
 
-  see my post [Notes On Implementing Comments](/jekyll/2020/03/01/notes-on-implementing-comments.html#a-comment-preview)
+  see [A Comment Preview](/jekyll/2020/03/01/notes-on-implementing-comments.html#a-comment-preview)
 
   #### `omitExtraWLInCodeBlocks`
 
